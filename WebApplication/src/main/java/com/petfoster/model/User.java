@@ -22,9 +22,24 @@ public class User {
 	private String firstName;
 	@Column(name = "lastname")
 	private String lastName;
+	@Column(name = "gender")
+	private String gender;
+	@Column(name = "phoneno")
+	private String phoneNumber;
+	@Column(name = "email")
+	private String email;
+	@Column(name = "password")
+	private String password;
+	@Column(name = "usertype")
+	private String userType;
+	@Column(name = "isenabled")
+	private boolean isEnabled;
 	
-	@Version
-	private Long version;
+	@jakarta.persistence.Transient
+	private String specialization;
+
+//	@Version
+//	private Long version;
 	
 	public long getId() {
 		return id;
@@ -80,21 +95,13 @@ public class User {
 	public void setEnabled(boolean isEnabled) {
 		this.isEnabled = isEnabled;
 	}
-	@Column(name = "gender")
-	private String gender;
-	@Column(name = "phoneno")
-	private String phoneNumber;
-	@Column(name = "email")
-	private String email;
-	@Column(name = "password")
-	private String password;
-	public User(long id, String firstName, String lastName, Long version, String gender, String phoneNumber,
+	public User(long id, String firstName, String lastName, String gender, String phoneNumber,
 			String email, String password, String userType, boolean isEnabled, String specialization) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.version = version;
+//		this.version = version;
 		this.gender = gender;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
@@ -106,14 +113,7 @@ public class User {
 	public User() {
 		super();
 	}
-	@Column(name = "usertype")
-	private String userType;
-	@Column(name = "isenabled")
-	private boolean isEnabled;
 	
-	@jakarta.persistence.Transient
-	private String specialization;
-
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender
