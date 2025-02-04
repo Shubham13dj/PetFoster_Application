@@ -1,9 +1,12 @@
 package com.petfoster.modelDTO;
 
+import java.util.List;
+
 public class FosterDTO {
 	private Long id;
     private String name;
     private String contactDetails;
+    private List<PetDTO> petList;
     
     
     public FosterDTO(Long id, String name, String contactDetails) {

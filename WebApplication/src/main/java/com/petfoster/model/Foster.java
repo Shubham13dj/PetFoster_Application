@@ -22,15 +22,23 @@ public class Foster {
 	@OneToMany(mappedBy = "foster")
 	private List<Pet> pets;
 
-	@Version
-	private Long version;
-	
+//	@Version
+//	private Long version;
+//	
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public Foster() {
+		super();
+	}
+
+	public Foster( String name, String contactDetails, List<Pet> pets) {
+		super();
+	
+		this.name = name;
+		this.contactDetails = contactDetails;
+		this.pets = pets;
 	}
 
 	public String getName() {

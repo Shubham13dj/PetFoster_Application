@@ -9,6 +9,14 @@ import jakarta.persistence.Version;
 
 @Entity
 public class PetApplication {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private Long petId;
+	private Long fosterId;
+	private String status; // Pending, Approved, Rejected
+	private String applicantDetails;
+	
     public Long getId() {
 		return id;
 	}
@@ -21,14 +29,14 @@ public class PetApplication {
 	public void setPetId(Long petId) {
 		this.petId = petId;
 	}
-	public PetApplication(Long id, Long petId, Long fosterId, String status, String applicantDetails, Long version) {
+	public PetApplication(Long id, Long petId, Long fosterId, String status, String applicantDetails) {
 		super();
 		this.id = id;
 		this.petId = petId;
 		this.fosterId = fosterId;
 		this.status = status;
 		this.applicantDetails = applicantDetails;
-		this.version = version;
+		//this.version = version;
 	}
 	public Long getFosterId() {
 		return fosterId;
@@ -51,14 +59,6 @@ public class PetApplication {
 	public void setApplicantDetails(String applicantDetails) {
 		this.applicantDetails = applicantDetails;
 	}
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long petId;
-    private Long fosterId;
-    private String status; // Pending, Approved, Rejected
-    private String applicantDetails;
-    
-    @Version
-	private Long version;
+//    @Version
+//	private Long version;
 }
