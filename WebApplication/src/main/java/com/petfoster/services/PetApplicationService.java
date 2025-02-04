@@ -1,0 +1,73 @@
+package com.petfoster.services;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.petfoster.model.Foster;
+import com.petfoster.model.Pet;
+import com.petfoster.model.PetApplication;
+import com.petfoster.modelDTO.PetApplicationDTO;
+import com.petfoster.repository.FosterRepository;
+import com.petfoster.repository.PetApplicationRepository;
+import com.petfoster.repository.PetRepository;
+
+import jakarta.transaction.Transactional;
+
+@Service
+public class PetApplicationService {
+	
+	@Autowired
+	private PetApplicationRepository petApplicationRepository;
+	
+	@Autowired
+	private PetRepository petRepository;
+	
+	@Autowired
+	private FosterRepository fosterRepository;
+	
+	@Autowired 
+	private ModelMapper modelMapper;
+	
+	@Transactional
+	public PetApplicationDTO applyForFoster(PetApplicationDTO petApplicationDTO)
+	{
+		Pet pet = petRepository.findById(petApplicationDTO.getPetId()).orElseThrow(()->new RuntimeException("Pet not found"));
+		
+		Foster foster = fosterRepository.findById(petApplicationDTO.getFosterId()).orElseThrow(()->new RuntimeException("Foster Not found"));
+		
+		PetApplication petApplication = new PetApplication();
+		petApplication.setPetId(pet.getId());
+		petApplication.setFosterId(foster.getId());
+		petApplication.setApplicantDetails(petApplicationDTO.getApplicantDetails());
+		petApplication.setStatus("Pending");
+		petApplication = petApplicationRepository.save(petApplication);
+		
+		return modelMapper.map(petApplication, PetApplicationDTO.class);
+	}
+	
+	public PetApplicationDTO getApplicationById(Long id)
+	{
+		PetApplication petApplication = petApplicationRepository.findById(id).orElseThrow(()->new RuntimeException("Application not found"));
+		return modelMapper.map(petApplication, PetApplicationDTO.class);
+	}
+	
+	@Transactional
+	public PetApplicationDTO updateApplicationStatus(Long id, String status)
+	{
+		PetApplication petApplication = petApplicationRepository.findById(id).orElseThrow(()->new RuntimeException("Application not found"));
+		petApplication.setStatus(status);
+		return modelMapper.map(petApplication, PetApplicationDTO.class);
+	}
+	
+	public List<PetApplicationDTO> getAllApplications()
+	{
+		List<PetApplication> petApplications = petApplicationRepository.findAll();
+		return petApplications.stream()
+						.map(petApplication -> modelMapper.map(petApplication, PetApplicationDTO.class))
+						.collect(Collectors.toList());
+	}
+}
