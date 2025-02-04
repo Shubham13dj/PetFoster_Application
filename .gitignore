@@ -1,0 +1,21 @@
+/.metadata/
+# Ignore macOS metadata
+.DS_Store
+
+# Ignore Windows thumbnail cache files
+Thumbs.db
+
+# Ignore specific IDE/editor metadata
+.vscode/
+.idea/
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore other common metadata files
+*.log
+*.tmp
+*.bak
+
+# Add more specific files or directories as needed
+
