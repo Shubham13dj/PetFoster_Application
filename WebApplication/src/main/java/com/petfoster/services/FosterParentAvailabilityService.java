@@ -8,6 +8,8 @@ import com.petfoster.model.FosterParentAvailability;
 import com.petfoster.modelDTO.FosterParentAvailabilityDTO;
 import com.petfoster.repository.FosterParentAvailabilityRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class FosterParentAvailabilityService {
 
@@ -17,11 +19,13 @@ public class FosterParentAvailabilityService {
 	@Autowired
 	private ModelMapper modelMapper;
 	
+	@Transactional
 	public FosterParentAvailabilityDTO createFosterParentAvailability(FosterParentAvailabilityDTO fosterParentAvailabilityDTO)
 	{
 		return modelMapper.map(fosterParentAvailabilityRepository.save(modelMapper.map(fosterParentAvailabilityDTO, FosterParentAvailability.class)), FosterParentAvailabilityDTO.class);
 	}
 	
+	@Transactional
 	public FosterParentAvailabilityDTO updateFosterParentAvailability(Long id, FosterParentAvailabilityDTO fosterParentAvailabilityDTO)
 	{
 		FosterParentAvailability fosterParentAvailability = fosterParentAvailabilityRepository.findById(id).orElseThrow(()-> new RuntimeException("Availability not found"));
@@ -30,6 +34,7 @@ public class FosterParentAvailabilityService {
 		return modelMapper.map(fosterParentAvailabilityRepository.save(fosterParentAvailability), FosterParentAvailabilityDTO.class);
 	}
 	
+	@Transactional
 	public void deleteFosterParentAvailability(Long id)
 	{
 		fosterParentAvailabilityRepository.deleteById(id);

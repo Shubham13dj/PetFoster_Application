@@ -11,6 +11,8 @@ import com.petfoster.model.Shelter;
 import com.petfoster.modelDTO.ShelterDTO;
 import com.petfoster.repository.ShelterRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ShelterServices {
 
@@ -20,11 +22,13 @@ public class ShelterServices {
 	@Autowired 
 	private ModelMapper modelMapper;
 	
+	@Transactional
 	public ShelterDTO addShelter(ShelterDTO shelterDTO)
 	{
 		return modelMapper.map(shelterRepo.save(modelMapper.map(shelterDTO, Shelter.class)), ShelterDTO.class);
 	}
 	
+	@Transactional
 	public ShelterDTO updateShelter(Long id, ShelterDTO shelterDTO)
 	{
 		Shelter shelter = shelterRepo.findById(id).orElseThrow(()-> new RuntimeException("No shelter found"));
@@ -50,6 +54,7 @@ public class ShelterServices {
 		return modelMapper.map(shelterRepo.findById(id), ShelterDTO.class);
 	}
 	
+	@Transactional
 	public void deleteShelterById(Long id)
 	{
 		shelterRepo.deleteById(id);
@@ -61,6 +66,7 @@ public class ShelterServices {
 				.collect(Collectors.toList());
 	}
 	
+	@Transactional
 	public ShelterDTO updateAvailablePetsCount(Long id, Integer newCount)
 	{
 		Shelter shelter = shelterRepo.findById(id).orElseThrow(()->new RuntimeException("Shelter not found"));

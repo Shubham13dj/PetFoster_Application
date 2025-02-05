@@ -11,6 +11,8 @@ import com.petfoster.model.AdoptionHistory;
 import com.petfoster.modelDTO.AdoptionHistoryDTO;
 import com.petfoster.repository.AdoptionHistoryRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class AdoptionHistoryService {
 
@@ -36,6 +38,7 @@ public class AdoptionHistoryService {
     }
 
     // Create a new adoption history
+    @Transactional
     public AdoptionHistoryDTO createAdoptionHistory(AdoptionHistoryDTO adoptionHistoryDTO) {
         AdoptionHistory history = modelMapper.map(adoptionHistoryDTO, AdoptionHistory.class);
         AdoptionHistory savedHistory = adoptionHistoryRepository.save(history);
@@ -43,6 +46,7 @@ public class AdoptionHistoryService {
     }
 
     // Update an existing adoption history
+    @Transactional
     public AdoptionHistoryDTO updateAdoptionHistory(Long id, AdoptionHistoryDTO adoptionHistoryDTO) {
         AdoptionHistory history = adoptionHistoryRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("AdoptionHistory not found with ID: " + id));
@@ -55,6 +59,7 @@ public class AdoptionHistoryService {
     }
 
     // Delete an adoption history record by its ID
+    @Transactional
     public void deleteAdoptionHistory(Long id) {
         if (!adoptionHistoryRepository.existsById(id)) {
             throw new RuntimeException("AdoptionHistory not found with ID: " + id);

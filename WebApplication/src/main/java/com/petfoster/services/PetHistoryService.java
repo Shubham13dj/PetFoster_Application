@@ -1,7 +1,6 @@
 package com.petfoster.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.petfoster.model.PetHistory;
 import com.petfoster.modelDTO.PetHistoryDTO;
 import com.petfoster.repository.PetHistoryRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class PetHistoryService {
@@ -21,6 +22,7 @@ public class PetHistoryService {
     private ModelMapper modelMapper;
 
     // Create a new PetHistory
+    @Transactional
     public PetHistoryDTO createPetHistory(PetHistoryDTO petHistoryDTO) {
         return modelMapper.map(petHistoryRepository.save(modelMapper.map(petHistoryDTO, PetHistory.class)),PetHistoryDTO.class);
     }
@@ -39,6 +41,7 @@ public class PetHistoryService {
 //    }
 
     // Update PetHistory record
+    @Transactional
     public PetHistoryDTO updatePetHistory(Long id, PetHistoryDTO updatedPetHistoryDTO) {
         if (petHistoryRepository.existsById(id)) {
             updatedPetHistoryDTO.setHistoryId(id); // Set the ID for the update
@@ -48,13 +51,14 @@ public class PetHistoryService {
     }
 
     // Delete PetHistory record
+    @Transactional
     public void deletePetHistory(Long id) {
         petHistoryRepository.deleteById(id);
     }
 
     // Custom method to get PetHistory by Pet ID (for example, fetch history of a specific pet)
     public List<PetHistoryDTO> getPetHistoryByPetId(Long petId) {
-        return petHistoryRepository.findByPet_PetId(petId)
+        return petHistoryRepository.findByPet_Id(petId)
         		.stream()
         		.map(petHistory -> modelMapper.map(petHistory, PetHistoryDTO.class))
         		.toList(); // Assuming a custom query method in repository

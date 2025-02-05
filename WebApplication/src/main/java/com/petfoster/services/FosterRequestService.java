@@ -10,6 +10,8 @@ import com.petfoster.model.FosterRequest;
 import com.petfoster.modelDTO.FosterRequestDTO;
 import com.petfoster.repository.FosterRequestRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class FosterRequestService {
 
@@ -20,6 +22,7 @@ public class FosterRequestService {
     private ModelMapper modelMapper;  // Used for converting DTOs to entities and vice versa
 
     // Create a new foster request
+    @Transactional
     public FosterRequestDTO createFosterRequest(FosterRequestDTO fosterRequestDTO) {
         return modelMapper.map(fosterRequestRepository.save(modelMapper.map(fosterRequestDTO, FosterRequest.class)), FosterRequestDTO.class);
     }
@@ -38,6 +41,7 @@ public class FosterRequestService {
     }
 
     // Update a foster request
+    @Transactional
     public FosterRequestDTO updateFosterRequest(Long id, FosterRequestDTO updatedRequestDTO) {
         if (fosterRequestRepository.existsById(id)) {
             updatedRequestDTO.setId(id);
@@ -47,6 +51,7 @@ public class FosterRequestService {
     }
 
     // Delete a foster request
+    @Transactional
     public void deleteFosterRequest(Long id) {
         fosterRequestRepository.deleteById(id);
     }

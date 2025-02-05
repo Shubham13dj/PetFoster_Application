@@ -3,12 +3,12 @@ package com.petfoster.services;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.petfoster.model.User;
 import com.petfoster.modelDTO.UserDTO;
 import com.petfoster.repository.UserRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class UserService {
@@ -27,6 +27,7 @@ public class UserService {
 	@Autowired
 	private ModelMapper modelMapper;
 
+	@Transactional
 	public UserDTO addNewUser(UserDTO userDTO)
 	{
 		User user = modelMapper.map(userDTO, User.class);
@@ -34,6 +35,7 @@ public class UserService {
 		return modelMapper.map(userRepository.save(user), UserDTO.class);
 	}
 	
+	@Transactional
 	public UserDTO updateUserProfile( Long id,UserDTO userDTO)
 	{
 		User user = userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found"));
@@ -46,6 +48,7 @@ public class UserService {
 		
 		return modelMapper.map(userRepository.save(user), UserDTO.class);
 	}
+	
 	
 	public UserDTO authenticateUser(String email, String password)
 	{

@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.petfoster.modelDTO.ShelterDTO;
 import com.petfoster.services.ShelterServices;
 
+/*
+ * Tested ok
+ */
 @RestController
 @RequestMapping("/shelter")
 public class ShelterController {
@@ -52,6 +55,10 @@ public class ShelterController {
 	{
 		return ResponseEntity.ok(shelterServices.getShelterByLocation(location));
 	}
+	
+	/*
+	 * Accepting Integer value need to change it to string
+	 */
 	@PatchMapping("/{id}")
 	public ResponseEntity<ShelterDTO> updateCount(@PathVariable Long id, @RequestBody Integer newCount)
 	{
