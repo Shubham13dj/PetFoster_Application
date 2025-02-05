@@ -41,9 +41,9 @@
 		    
 		    
 		    @PostMapping
-		    public PetDTO addPet(@RequestBody PetDTO petDTO)
+		    public PetDTO addNewPet(@RequestBody PetDTO petDTO)
 		    {
-		    	return petService.addPet(petDTO);
+		    	return petService.addNewPet(petDTO);
 		    }
 		    
 		    @PutMapping("/{id}")
@@ -57,6 +57,10 @@
 		    {
 		    	petService.deletePet(id);
 		    }
+		    
+		    /*
+		     * 
+		     */
 		    
 		    
 		    

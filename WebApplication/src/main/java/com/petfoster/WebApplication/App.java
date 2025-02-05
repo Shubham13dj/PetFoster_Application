@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  */
 
 @SpringBootApplication(scanBasePackages= {"com.petfoster.services", "com.petfoster.config","com.petfoster.controllers"})
-@EntityScan(basePackages = "com.petfoster.model")
+@EntityScan(basePackages = {"com.petfoster.model", "com.petfoster.model.utility"})
 @EnableJpaRepositories(basePackages = "com.petfoster.repository")
 public class App 
 {

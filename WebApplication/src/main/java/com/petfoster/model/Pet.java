@@ -15,19 +15,16 @@ public class Pet {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	private Integer age;
+	private String species;
 	private String breed;
+	private String healthStatus;
+	private boolean adopted;
+	private boolean fostered;
+	private String location;
+	private String photoUrl;
 	private String description;
-	private String status;
 	
-	public String getStatus() {
-		return status;
-	}
-
-
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
 
 	@ManyToOne
 	@JoinColumn(name = "foster_id")

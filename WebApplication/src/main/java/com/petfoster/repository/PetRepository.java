@@ -8,4 +8,5 @@ import com.petfoster.model.Pet;
 @Repository
 public interface PetRepository extends JpaRepository<Pet, Long> {
 
+	
 }

@@ -1,5 +1,7 @@
 package com.petfoster.model;
 
+import com.petfoster.enums.util.UserRole;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,22 +20,20 @@ public class User {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@Column(name = "firstname")
-	private String firstName;
-	@Column(name = "lastname")
-	private String lastName;
-	@Column(name = "gender")
+	private String name;
+
 	private String gender;
-	@Column(name = "phoneno")
+	@Column(name = "phone_no")
 	private String phoneNumber;
-	@Column(name = "email")
 	private String email;
-	@Column(name = "password")
 	private String password;
-	@Column(name = "usertype")
-	private String userType;
-	@Column(name = "isenabled")
+	
+	private UserRole role;
+	
+	@Column(name = "is_enabled")
 	private boolean isEnabled;
+	
+	private Integer petCount;
 	
 	@jakarta.persistence.Transient
 	private String specialization;
@@ -47,18 +47,7 @@ public class User {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+	
 	public String getGender() {
 		return gender;
 	}
@@ -83,12 +72,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getUserType() {
-		return userType;
-	}
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
+	
 	public boolean isEnabled() {
 		return isEnabled;
 	}
@@ -99,14 +83,13 @@ public class User {
 			String email, String password, String userType, boolean isEnabled, String specialization) {
 		super();
 		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
+		
 //		this.version = version;
 		this.gender = gender;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
 		this.password = password;
-		this.userType = userType;
+		
 		this.isEnabled = isEnabled;
 		this.specialization = specialization;
 	}
@@ -116,9 +99,8 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender
-				+ ", phoneNumber=" + phoneNumber + ", email=" + email + ", password=" + password + ", userType="
-				+ userType + ", isEnabled=" + isEnabled + "]";
+		return "User [id=" + id + ", Name=" + name + ", gender=" + gender
+				+ ", phoneNumber=" + phoneNumber + ", email=" + email + ", password=" + password + ", isEnabled=" + isEnabled + "]";
 	}
 	
 	

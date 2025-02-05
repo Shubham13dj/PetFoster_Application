@@ -60,5 +60,14 @@ public class FosterService {
 	{
 		fosterRepository.deleteById(id);
 	}
+	
+	
+	/*
+	 * 	Foster parent requests to foster a pet
+	Approve/Reject requests
+	Track status of requests
+
+	 */
+	
 }
 

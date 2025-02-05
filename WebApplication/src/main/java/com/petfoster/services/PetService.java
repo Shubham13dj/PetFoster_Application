@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.petfoster.model.Pet;
 import com.petfoster.modelDTO.PetDTO;
+import com.petfoster.repository.AdoptionHistoryRepository;
 import com.petfoster.repository.PetRepository;
 
 import jakarta.transaction.Transactional;
@@ -22,6 +23,7 @@ public class PetService {
 	@Autowired 
 	private ModelMapper modelMapper;
 	
+
 	
 	public List<PetDTO> getAllPets()
 	{
@@ -40,7 +42,7 @@ public class PetService {
 	}
 	
 	@Transactional
-	public PetDTO addPet(PetDTO petDto)
+	public PetDTO addNewPet(PetDTO petDto)
 	{
 		
 		Pet pet = modelMapper.map(petDto, Pet.class);
@@ -72,5 +74,18 @@ public class PetService {
 		
 		return modelMapper.map(pet, PetDTO.class);
 	}
+	
+	/* Pending functionalities
+	 * 
+	List available pets for fostering
+	Search/filter pets by criteria (age, species, location, etc.)
+	Mark pet as adopted/fostered
+	Upload pet photo
+
+	*	Record and update pet’s medical and foster history
+	View a pet’s previous foster details
+
+	*
+	 */
 
 }
