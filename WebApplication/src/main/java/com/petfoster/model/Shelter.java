@@ -9,13 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-public class Shelter {
 	/*
 	 * shelter_id, name, location, capacity, contact_info, available_pets_count
 	 */
@@ -26,6 +19,13 @@ public class Shelter {
 	Assign pets to foster homes
  
 	 */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class Shelter {
+
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
