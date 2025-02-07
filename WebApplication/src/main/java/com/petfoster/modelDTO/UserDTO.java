@@ -28,11 +28,20 @@ public class UserDTO {
 	
 	private Integer petCount;
 	
+	private String jsonToken;
+	
 	@jakarta.persistence.Transient
 	private String specialization;
 
 //	@Version
 //	private Long version;
+	
+	public String getJsonToken() {
+		return jsonToken;
+	}
+	public void setJsonToken(String jsonToken) {
+		this.jsonToken = jsonToken;
+	}
 	
 	public long getId() {
 		return id;

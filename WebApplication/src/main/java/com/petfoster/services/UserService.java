@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.petfoster.model.User;
 import com.petfoster.modelDTO.UserDTO;
 import com.petfoster.repository.UserRepository;
+import com.petfoster.utils.JWTUtils;
+import com.petfoster.utils.PasswordUtils;
 
 import jakarta.transaction.Transactional;
 
@@ -26,12 +28,19 @@ public class UserService {
 	
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired
+	private JWTUtils jwtUtils;
+	
+	
+	
+	
 
 	@Transactional
-	public UserDTO addNewUser(UserDTO userDTO)
+	public UserDTO signup(UserDTO userDTO)
 	{
 		User user = modelMapper.map(userDTO, User.class);
-		
+		user.setPassword(PasswordUtils.hashPassword(user.getPassword()));
 		return modelMapper.map(userRepository.save(user), UserDTO.class);
 	}
 	
@@ -40,7 +49,7 @@ public class UserService {
 	{
 		User user = userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found"));
 		user.setEmail(userDTO.getEmail());
-		user.setPassword(userDTO.getPassword());
+		user.setPassword(PasswordUtils.hashPassword(userDTO.getPassword()));
 		user.setEmail(userDTO.getEmail());
 		user.setPhoneNumber(userDTO.getPhoneNumber());
 		user.setGender(userDTO.getGender());
@@ -50,11 +59,18 @@ public class UserService {
 	}
 	
 	
-	public UserDTO authenticateUser(String email, String password)
+	public UserDTO login( UserDTO userDTO)
 	{
-		User user = userRepository.findUserByEmail(email);
-		if(user.getPassword().equals(password)) {
-			return modelMapper.map(user, UserDTO.class);
+		
+		User user = userRepository.findUserByEmail(userDTO.getEmail());
+		if(PasswordUtils.validatePassword(userDTO.getPassword(), user.getPassword())) {
+			
+			System.out.println("-----------------------------------------------------------------------------------------");
+			System.out.println(userDTO.getJsonToken());
+			userDTO = modelMapper.map(user, UserDTO.class);
+			userDTO.setJsonToken(jwtUtils.generateToken(userDTO.getEmail()));
+			
+			return userDTO;
 		}else {
 			throw new RuntimeException("Unauthorized user");
 		}

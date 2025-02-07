@@ -14,9 +14,9 @@ public class UserController {
     private UserService userService;
 
     // Register a new user
-    @PostMapping("/register")
-    public ResponseEntity<UserDTO> registerUser(@RequestBody UserDTO userDTO) {
-        UserDTO createdUser = userService.addNewUser(userDTO);
+    @PostMapping("/signup")
+    public ResponseEntity<UserDTO> signup(@RequestBody UserDTO userDTO) {
+        UserDTO createdUser = userService.signup(userDTO);
         return ResponseEntity.ok(createdUser);
     }
 
@@ -29,8 +29,8 @@ public class UserController {
 
     // Authenticate a user (Login)
     @PostMapping("/login")
-    public ResponseEntity<UserDTO> authenticateUser(@RequestParam String email, @RequestParam String password) {
-        UserDTO authenticatedUser = userService.authenticateUser(email, password);
+    public ResponseEntity<UserDTO> login(@RequestBody UserDTO userDTO) {
+        UserDTO authenticatedUser = userService.login(userDTO);
         return ResponseEntity.ok(authenticatedUser);
     }
 

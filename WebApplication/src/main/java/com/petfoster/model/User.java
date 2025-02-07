@@ -35,6 +35,9 @@ public class User {
 	
 	private Integer petCount;
 	
+	private String jsonToken;
+	
+	
 	@jakarta.persistence.Transient
 	private String specialization;
 
@@ -50,6 +53,12 @@ public class User {
 	
 	public String getGender() {
 		return gender;
+	}
+	public String getJsonToken() {
+		return jsonToken;
+	}
+	public void setJsonToken(String jsonToken) {
+		this.jsonToken = jsonToken;
 	}
 	public void setGender(String gender) {
 		this.gender = gender;
