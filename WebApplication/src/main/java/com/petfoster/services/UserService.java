@@ -65,8 +65,6 @@ public class UserService {
 		User user = userRepository.findUserByEmail(userDTO.getEmail());
 		if(PasswordUtils.validatePassword(userDTO.getPassword(), user.getPassword())) {
 			
-			System.out.println("-----------------------------------------------------------------------------------------");
-			System.out.println(userDTO.getJsonToken());
 			userDTO = modelMapper.map(user, UserDTO.class);
 			userDTO.setJsonToken(jwtUtils.generateToken(userDTO.getEmail()));
 			
