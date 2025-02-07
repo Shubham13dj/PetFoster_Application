@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';  // Changed Switch to Routes
+import Register from './component/Register';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css'; // Background and global styles
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <h1 className="text-center mt-5">Welcome to PetFoster</h1>
+        <Routes> 
+          {/* Register route */}
+          <Route path="/register" element={<Register />} /> 
+          {/* Add other routes here if needed */}
+        </Routes>
+        <Register/>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

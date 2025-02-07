@@ -1,0 +1,62 @@
+
+.register-form {
+    width: 100%;
+    
+    max-width: 400px;
+    margin: auto;
+    padding: 2rem;
+    background-image: url('https://c1.wallpaperflare.com/preview/87/1016/10/dog-golden-retriever-golden-retriever.jpg');  /* Replace with your image URL */
+    background-size: cover;  /* Ensures the background image fills the container */
+    background-position: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(222, 217, 221, 0.1);
+  }
+  
+  h2 {
+    color: #f4fafa; /* Ensures the text is visible on the background */
+  }
+
+  
+/* Styling form labels */
+.register-form label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #070806;
+}
+
+/* Styling the form inputs */
+.register-form input,
+.register-form select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+/* Interactive input on focus */
+.register-form input:focus,
+.register-form select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Styling the submit button */
+.register-form button {
+    width: 100%;
+    padding: 1rem;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Button hover effect */
+.register-form button:hover {
+    background-color: #0056b3;
+}
