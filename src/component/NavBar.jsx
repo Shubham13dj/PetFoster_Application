@@ -27,7 +27,7 @@ function Navbar() {
   ];
 
   return (
-    <nav className={`navbar navbar-expand-lg ${isSticky ? 'bg-primary' : 'bg-light'} fixed-top`}>
+    <nav className={`navbar navbar-expand-lg ${isSticky ? 'bg-primary' : 'bg-dark'} fixed-top `}>
       <div className="container">
         {/* Brand Logo */}
         <Link to="/" className="navbar-brand text-primary fw-bold">
@@ -49,7 +49,7 @@ function Navbar() {
           <ul className="navbar-nav ms-auto">
             {navItems.map((item) => (
               <li key={item.link} className="nav-item">
-                <Link to={item.path} className="nav-link text-dark">
+                <Link to={item.path} className="nav-link text-white">
                   {item.link}
                 </Link>
               </li>

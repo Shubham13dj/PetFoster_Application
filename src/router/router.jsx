@@ -1,5 +1,7 @@
 import { Children } from "react";
 import App from "../App";
+import SignUp from "../component/SignUp";
+import Login from "../component/Login";
 import {
     createBrowserRouter
   } from "react-router-dom";
@@ -25,6 +27,13 @@ import {
             //     path: "/contact",
             //     element: <h1>Contact</h1>
             // }
+            {
+                path: "/Signup",
+                element: <SignUp/>
+            },{
+                path: "/login",
+                element: <Login/>
+            }
         ]
     }
   ]
