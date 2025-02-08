@@ -3,6 +3,7 @@ import App from "../App";
 import SignUp from "../component/SignUp";
 import Login from "../component/Login";
 import CareerPage from "../component/CareerPage";
+import BlogPage from "../component/BlogPage";
 import {
     createBrowserRouter
   } from "react-router-dom";
@@ -56,7 +57,10 @@ import AddPetDetailsPage from "../component/AddPetDetailsPage";
             },{
                 path: "component/career",   
                 element: <CareerPage />
-              }
+              },{ 
+                path: "/blog", 
+                element: <BlogPage /> 
+            }
         ]
     }
   ]

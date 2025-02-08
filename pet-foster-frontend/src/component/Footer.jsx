@@ -12,8 +12,8 @@ function Footer() {
             <ul className="list-unstyled">
               <li><a href="#" className="text-light text-decoration-none">About</a></li>
               <li><a href="component/career" className="text-light text-decoration-none">Career</a></li>
-              <li><a href="#" className="text-light text-decoration-none">Brand Center</a></li>
-              <li><a href="#" className="text-light text-decoration-none">Blog</a></li>
+             
+              <li><a href="/blog" className="text-light text-decoration-none">Blog</a></li>
             </ul>
           </div>
 
