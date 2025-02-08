@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBarsStaggered, FaBlog, FaXmark } from 'react-icons/fa6';
-import { AuthContext } from '../context/Authprovider';
+import  {AuthContext}  from '../context/Authprovider';
 
 function Navbar() {
   const [isSticky, setSticky] = useState(false);
-  const { user } = useContext(AuthContext);
+  const {  user } = useContext(AuthContext);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,10 +56,10 @@ function Navbar() {
             ))}
           </ul>
 
-          {/* User Info (Only visible when logged in) */}
+          {/*  user Info (Only visible when logged in) */}
           <div className="d-flex align-items-center ms-3">
-            {user ? (
-              <span className="text-dark fw-bold">{user.email}</span>
+            { user ? (
+              <span className="text-dark fw-bold">{ user.email}</span>
             ) : (
               ''
             )}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from 'react-icons/bs';
 
-function MyFooter() {
+function Footer() {
   return (
     <footer className="bg-dark text-light py-4 mt-5">
       <div className="container">
@@ -68,4 +68,4 @@ function MyFooter() {
   );
 }
 
-export default MyFooter;
+export default Footer;
