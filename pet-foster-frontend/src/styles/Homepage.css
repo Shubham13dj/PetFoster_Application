@@ -1,0 +1,88 @@
+.homepage-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .slideshow {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }     
+  
+  .slide {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .slide-image {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+  }
+  
+  .image-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-family: "Arial", sans-serif;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+  }
+  
+  .image-text h2 {
+    font-size: 42px;
+    font-weight: bold;
+    color: #ff5733;
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  .image-text p {
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: 10px;
+    animation: fadeIn 2s ease-in-out;
+  }
+  
+  /* Smooth fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Navigation buttons */
+  .prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+  
+  .prev-btn {
+    left: 10px;
+  }
+  
+  .next-btn {
+    right: 10px;
+  }
+  
+  /* Hover effect for buttons */
+  .prev-btn:hover, .next-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
