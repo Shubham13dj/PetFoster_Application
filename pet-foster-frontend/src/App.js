@@ -10,9 +10,12 @@ const App = () => {
       <div>
         <h1 className="text-center mt-5">Welcome to PetFoster</h1>
         <Routes> 
+	<Route path="/" element={<Layout />}>
           {/* Register route */}
           <Route path="/register" element={<Register />} /> 
           {/* Add other routes here if needed */}
+		
+	</Route>
         </Routes>
         <Register/>
       </div>
