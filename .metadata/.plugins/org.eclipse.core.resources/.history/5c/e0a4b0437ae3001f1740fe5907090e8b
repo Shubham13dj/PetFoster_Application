@@ -1,0 +1,8 @@
+package com.petfoster.model;
+
+/*
+ * Handles requests for fostering pets.
+ */
+public class FosterRequest {
+
+}

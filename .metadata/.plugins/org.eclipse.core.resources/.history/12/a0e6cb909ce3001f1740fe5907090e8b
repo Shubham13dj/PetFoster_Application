@@ -1,0 +1,5 @@
+package com.petfoster.repository;
+
+public interface FosterParentAvailibilityRepository {
+
+}

@@ -1,0 +1,5 @@
+package com.petfoster.utils;
+
+public class JWTUtils {
+
+}

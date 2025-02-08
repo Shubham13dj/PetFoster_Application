@@ -1,0 +1,13 @@
+package com.petfoster.utility;
+
+public class MedicalRecords {
+	
+	/*
+	 * o	Attributes: pet_id, record_id, vet_name, vet_contact, visit_date, diagnosis, treatment, medications
+o	Functionalities:
+	Add and update pet medical records
+	View medical history of pets
+
+	 */
+
+}

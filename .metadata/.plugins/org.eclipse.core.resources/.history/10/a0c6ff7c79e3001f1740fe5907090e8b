@@ -1,0 +1,5 @@
+package com.petfoster.model.utils;
+
+public enum UserRole {
+
+}

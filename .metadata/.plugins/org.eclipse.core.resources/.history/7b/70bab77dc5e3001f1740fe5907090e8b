@@ -1,0 +1,44 @@
+package com.petfoster.modelDTO;
+
+import java.util.Date;
+
+import com.petfoster.enums.util.RequestStatus;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+/*
+ * Handles requests for fostering pets.
+ */
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class FosterRequestDTO {
+
+	/*
+	 * request_id, user_id (foster parent), pet_id, request_date, status (pending, accepted, rejected), start_date, end_date, notes
+	 */
+	
+
+	private long Id;
+	
+
+	private UserDTO fosterParent;
+	
+	private Date requestDate;
+	
+	private RequestStatus status;
+	
+	private Date startDate;
+	
+	private Date endDate;
+	
+	private String notes;
+	
+	
+	
+}

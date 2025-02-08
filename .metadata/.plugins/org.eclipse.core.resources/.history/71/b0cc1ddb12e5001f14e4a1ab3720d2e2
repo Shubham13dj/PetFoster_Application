@@ -1,0 +1,5 @@
+package com.petfoster.config;
+
+public class SecurityConfig {
+
+}

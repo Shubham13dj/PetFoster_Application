@@ -1,0 +1,20 @@
+package com.petfoster.model;
+
+/*
+ * Manages requests for adopting pets.
+ */
+public class AdoptionRequest {
+
+	/*
+	 * adopt_request_id, user_id (adopter), pet_id, request_date, status (pending, approved, rejected)
+	 */
+	
+	
+	/*
+	 * 	Submit an adoption request for a pet
+	Approve/Reject adoption requests
+	Transfer ownership after adoption
+
+	 */
+	
+}

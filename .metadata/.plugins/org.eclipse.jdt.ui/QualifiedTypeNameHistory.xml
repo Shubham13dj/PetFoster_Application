@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="org.modelmapper.convention.MatchingStrategies"/>
+    <fullyQualifiedTypeName name="com.petfoster.model.User"/>
+    <fullyQualifiedTypeName name="com.petfoster.modelDTO.AdoptionHistoryDTO"/>
+    <fullyQualifiedTypeName name="com.petfoster.repository.AdoptionRequestRepository"/>
+    <fullyQualifiedTypeName name="com.petfoster.model.AdoptionRequest"/>
+    <fullyQualifiedTypeName name="com.petfoster.modelDTO.AdoptionRequestDTO"/>
+    <fullyQualifiedTypeName name="com.petfoster.services.FosterParentAvailabilityService"/>
+    <fullyQualifiedTypeName name="com.petfoster.repository.FosterParentAvailabilityRepository"/>
+    <fullyQualifiedTypeName name="com.petfoster.config.ModelMapperConfig"/>
+    <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
+    <fullyQualifiedTypeName name="org.modelmapper.ModelMapper"/>
+    <fullyQualifiedTypeName name="com.petfoster.modelDTO.ShelterDTO"/>
+    <fullyQualifiedTypeName name="com.petfoster.services.AdoptionHistoryService"/>
+    <fullyQualifiedTypeName name="com.petfoster.modelDTO.FosterParentAvailabilityDTO"/>
+    <fullyQualifiedTypeName name="com.petfoster.modelDTO.FosterDTO"/>
+    <fullyQualifiedTypeName name="com.petfoster.modelDTO.FosterRequestDTO"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="org.springframework.http.RequestEntity"/>
+    <fullyQualifiedTypeName name="com.petfoster.modelDTO.PetHistoryDTO"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.GenerationType"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
+    <fullyQualifiedTypeName name="jakarta.transaction.Transactional"/>
+    <fullyQualifiedTypeName name="io.jsonwebtoken.Jwts"/>
+    <fullyQualifiedTypeName name="io.jsonwebtoken.SignatureAlgorithm"/>
+    <fullyQualifiedTypeName name="io.jsonwebtoken.Jwts.SIG"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.context.SecurityContextHolder"/>
+    <fullyQualifiedTypeName name="com.petfoster.utils.JwtAuthenticationFilter"/>
+    <fullyQualifiedTypeName name="org.springframework.security.config.annotation.web.builders.HttpSecurity"/>
+    <fullyQualifiedTypeName name="org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder"/>
+</qualifiedTypeNameHistroy>

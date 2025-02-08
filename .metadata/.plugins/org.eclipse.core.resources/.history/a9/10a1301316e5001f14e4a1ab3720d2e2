@@ -1,0 +1,45 @@
+package com.petfoster.utils;
+
+import java.io.IOException;
+
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@WebFilter
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
+
+	private JWTUtils jwtUtils;
+	
+	public JwtAuthenticationFilter(JWTUtils jwtUtils)
+	{
+		this.jwtUtils = jwtUtils;
+	}
+	
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+			throws ServletException, IOException {
+
+		
+		String token = extractJwtToken(request);
+		
+		
+	}
+	
+	private String extractJwtToken(HttpServletRequest request)
+	{
+		String header = request.getHeader("Authorization");
+		if(header != null && header.startsWith("Bearer"))
+		{
+			return header.substring(7);
+		}
+		return null;
+	}
+	
+	
+}
