@@ -15,7 +15,7 @@ import com.petfoster.modelDTO.FosterParentAvailabilityDTO;
 import com.petfoster.services.FosterParentAvailabilityService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/fp-availability")
 public class FosterParentAvailabilityController {
 

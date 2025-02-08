@@ -17,7 +17,7 @@ import com.petfoster.modelDTO.FosterDTO;
 import com.petfoster.services.FosterService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/foster")
 public class FosterController {
 

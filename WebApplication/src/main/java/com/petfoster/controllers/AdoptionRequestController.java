@@ -15,7 +15,7 @@ import com.petfoster.modelDTO.AdoptionRequestDTO;
 import com.petfoster.services.AdoptionRequestService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/adoption-request")
 public class AdoptionRequestController {
 

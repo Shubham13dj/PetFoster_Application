@@ -19,7 +19,7 @@ import com.petfoster.services.PetService;
 	
 	
 	@RestController
-	@CrossOrigin
+	@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping("/pets")
 	public class PetController {
 	

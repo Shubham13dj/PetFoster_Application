@@ -18,7 +18,7 @@ import com.petfoster.modelDTO.AdoptionHistoryDTO;
 import com.petfoster.services.AdoptionHistoryService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/adoption-history")
 public class AdoptionHistoryController {
 	

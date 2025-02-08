@@ -22,7 +22,7 @@ import com.petfoster.services.ShelterServices;
  * Tested ok
  */
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/shelter")
 public class ShelterController {
 

@@ -1,22 +1,55 @@
 import React, { useContext, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/Authprovider';
 import googleLogo from '../imgs/google-logo.svg';
 import loginpagecopy from '../imgs/loginpagecopy.jpg';  // Import the image
+import { toast } from 'react-hot-toast';
+import { UserContext } from '../App';
+import { storeInSession } from '../common/session';
+import axios from 'axios';
 
 function Login() {
     const { login, loginWithGoogle } = useContext(AuthContext);
     const [error, setError] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
+    
+    let { userAuth: { jsonToken }, setUserAuth } = useContext(UserContext)
 
     const form = location.state?.form?.pathname || "/";
 
-    const handleSignUp = (event) => {
-        event.preventDefault();
-        const form = event.target;
+    const userAuthThroughServer = (serverRoute, formData) => {
+        console.log(process.env.REACT_APP_SERVER_DOMAIN)
+        console.log(formData)
+        axios.post("http://localhost:9000" + serverRoute, formData)
+            .then(({ data }) => {
+                storeInSession("user", JSON.stringify(data))
+                // console.log(data)
+
+                // console.log(sessionStorage)
+
+                setUserAuth(data)
+            })
+            .catch(({ response }) => {
+                //toast.error(response.data.error)
+            })
+    }
+    
+    const handleSignUp = (e) => {
+        e.preventDefault();
+        const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
+
+       let forms = new FormData(form);
+
+       let formData = {}
+
+       for(let [key, value] of forms.entries()){
+        formData[key] = value;
+       }
+
+       userAuthThroughServer("/users/login", formData);
 
         login(email, password)
             .then((userCredential) => {
@@ -36,6 +69,9 @@ function Login() {
     };
 
     return (
+        jsonToken ?
+            <Navigate to="/" />
+        :
         <div
             className="d-flex align-items-center justify-content-center vh-100"
             style={{

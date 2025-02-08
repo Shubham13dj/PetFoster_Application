@@ -10,9 +10,23 @@ import { Outlet } from 'react-router-dom';
 import Footer from './component/Footer';
 import FosterRequestPage from './component/FosterRequestPage';
 import AddPetDetailsPage from './component/AddPetDetailsPage';
+import { createContext, useEffect, useState } from 'react';
+import { lookInSession } from './common/session';
 
+export const UserContext = createContext({})
 const App = () => {
+
+  const [ userAuth, setUserAuth ] = useState({});
+
+    useEffect(()=>{
+        let userInSession = lookInSession("user");
+
+        userInSession ? setUserAuth(JSON.parse(userInSession)) : setUserAuth({ jsonToken: null })
+
+    }, [])
+
   return (
+    <UserContext.Provider value={{userAuth, setUserAuth}}>
     <div className="app-container">
       <Navbar />  {/* Render the Navbar */}
       
@@ -25,6 +39,7 @@ const App = () => {
         <Footer /> {/* Render the Footer */}
       </div>
     </div>
+    </UserContext.Provider>
   );
 };
 
