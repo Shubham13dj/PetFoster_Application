@@ -2,11 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBarsStaggered, FaBlog, FaXmark } from 'react-icons/fa6';
 import  {AuthContext}  from '../context/Authprovider';
+import { UserContext } from '../App';
 
 function Navbar() {
   const [isSticky, setSticky] = useState(false);
   const {  user } = useContext(AuthContext);
-
+  
+  let { userAuth: { jsonToken }, setUserAuth } = useContext(UserContext)
+  
   useEffect(() => {
     const handleScroll = () => {
       setSticky(window.scrollY > 100);
@@ -19,11 +22,19 @@ function Navbar() {
   }, []);
 
   // Navigation items
-  const navItems = [
+  const navItems = 
+  jsonToken ?
+  [
+    { link: 'Home', path: '/' },
+    { link: 'About', path: '/about' },
+    { link: 'Logout', path: '/logout' },
+  ]
+    :
+  [ 
     { link: 'Home', path: '/' },
     { link: 'About', path: '/about' },
     { link: 'Sign Up', path: '/signup' },
-    { link: 'Login', path: '/login' },
+    { link: 'Login', path: '/login' }
   ];
 
   return (
