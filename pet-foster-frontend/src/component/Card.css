@@ -1,0 +1,75 @@
+/* Container for all the cards */
+.card-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  /* Style for each card */
+  .card {
+    width: 18rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 5px; /* Reduced margin between cards */
+  }
+  
+  /* Style for card image */
+  .card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  /* Card body styles */
+  .card-body {
+    padding: 15px;
+  }
+  
+  /* Title style */
+  .card-title {
+    font-size: 1.25em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Text style for card body */
+  .card-text {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 8px;
+  }
+  
+  /* Hover effect for cards */
+  .card:hover {
+    transform: translateY(-10px); /* Lifts the card when hovered */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+  }
+  
+  /* Additional styles for Swiper container */
+  .mySwiper {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Adjust Swiper Slide to have smaller margins */
+  .swiper-slide {
+    margin: 0 2px; /* Reduced margin between slides to 2px */
+  }
+  
+  /* Responsive for smaller screens */
+  @media (max-width: 768px) {
+    .card-container {
+      padding: 10px;
+    }
+  
+    .card {
+      width: 100%; /* Full width on smaller screens */
+      margin-bottom: 15px;
+    }
+  }
+  
