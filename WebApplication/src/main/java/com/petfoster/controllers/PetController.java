@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -49,10 +48,10 @@ import com.petfoster.services.PetService;
 		    	return petService.addNewPet(petDTO);
 		    }
 		    
-		    @PatchMapping("/{id}")
-		    public PetDTO fosterPet(@PathVariable Long id)
+		    @PutMapping("/{id}")
+		    public PetDTO updatePet(@PathVariable Long id, @RequestBody PetDTO petDTO)
 		    {
-		    	return petService.foster(id);
+		    	return petService.updatePet(id, petDTO);
 		    }
 		    
 		    @DeleteMapping("/{id}")

@@ -44,13 +44,6 @@ function UserDashboard() {
 
   return (
     <div className="container mt-5">
-      <div className="d-flex justify-content-between align-items-center">
-        <h1 className="text-primary">Welcome, {userAuth?.name}</h1> {/* Display user name */}
-        <button onClick={handleLogout} className="btn btn-danger">
-          Logout
-        </button>
-      </div>
-
       <div className="user-details mt-4">
         <h3>User Details</h3>
         <p><strong>Email:</strong> {userAuth?.email}</p>
