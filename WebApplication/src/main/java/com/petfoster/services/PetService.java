@@ -75,6 +75,20 @@ public class PetService {
 		return modelMapper.map(pet, PetDTO.class);
 	}
 	
+	public PetDTO getPetByBreed(String breed)
+	{
+		return modelMapper.map(petRepository.findByBreed(breed), PetDTO.class);
+	}
+	
+	public PetDTO getPetByAge(Integer age)
+	{
+		return modelMapper.map(petRepository.findByAge(age), PetDTO.class);
+	}
+	
+	public PetDTO getPetLocation(String location)
+	{
+		return modelMapper.map(petRepository.findByLocation(location), PetDTO.class);
+	}
 	/* Pending functionalities
 	 * 
 	List available pets for fostering
