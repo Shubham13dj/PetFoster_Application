@@ -1,6 +1,6 @@
 import React from 'react';
 import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from 'react-icons/bs';
-
+import { Link } from "react-router-dom";
 function Footer() {
   return (
     <footer className="bg-dark text-light py-4 mt-5">
@@ -21,8 +21,8 @@ function Footer() {
           <div className="col-md-3">
             <h5>Help Center</h5>
             <ul className="list-unstyled">
-              <li><a href="#" className="text-light text-decoration-none">Discord Server</a></li>
-              <li><a href="#" className="text-light text-decoration-none">Twitter</a></li>
+
+              <li><Link to="/twitter" className="text-light text-decoration-none">Twitter</Link></li>
               <li><a href="#" className="text-light text-decoration-none">Facebook</a></li>
               <li><a href="#" className="text-light text-decoration-none">Contact Us</a></li>
             </ul>
