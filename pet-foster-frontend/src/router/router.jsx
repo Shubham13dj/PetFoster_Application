@@ -2,6 +2,7 @@ import { Children } from "react";
 import App from "../App";
 import SignUp from "../component/SignUp";
 import Login from "../component/Login";
+import CareerPage from "../component/CareerPage";
 import {
     createBrowserRouter
   } from "react-router-dom";
@@ -52,7 +53,10 @@ import AddPetDetailsPage from "../component/AddPetDetailsPage";
             {
                 path: "/add-pet",
                 element: <AddPetDetailsPage />
-            }
+            },{
+                path: "component/career",   
+                element: <CareerPage />
+              }
         ]
     }
   ]
