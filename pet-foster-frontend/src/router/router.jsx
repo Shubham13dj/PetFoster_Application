@@ -5,20 +5,23 @@ import Login from "../component/Login";
 import {
     createBrowserRouter
   } from "react-router-dom";
+import About from "../component/About";
+import Register from "../component/Register";
+import HomePage from "../pages/HomePage";
 
   const router = createBrowserRouter([
     {
         path: "/",
         element : <App/>,
         children: [
-            // {
-            //     path: "/",
-            //     element: <h1>Home</h1>
-            // },
-            // {
-            //     path: "/about",
-            //     element: <h1>About</h1>
-            // },
+            {
+                path: "/",
+                element: <HomePage />
+            },
+            {
+                path: "/about",
+                element: <About />
+            },
             // {
             //     path: "/shop",
             //     element: <h1>Shop</h1>
@@ -29,7 +32,7 @@ import {
             // }
             {
                 path: "/Signup",
-                element: <SignUp/>
+                element: <Register />
             },{
                 path: "/login",
                 element: <Login/>

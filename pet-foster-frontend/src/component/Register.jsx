@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import '../styles/Register.css'; // Import Register-specific styles (no need for App.css here)
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/Authprovider';
+import googleLogo from '../imgs/google-logo.svg';
 
 const Register = () => {
+
+  const { createUser, loginWithGoogle } = useContext(AuthContext);
+      const [error, setError] = useState('');
+      const location = useLocation();
+      const navigate = useNavigate();
+  
   // State to capture form values
   const [formData, setFormData] = useState({
     name: '',
@@ -48,7 +57,16 @@ const Register = () => {
       alert('There was an error, please try again later.');
     }
   };
-
+  const handleRegister = () => {
+    loginWithGoogle()
+        .then((result) => {
+            alert('Logged in with Google!');
+            navigate('/');
+        })
+        .catch((error) => {
+            setError(error.message);
+        });
+};
   return (
     <Container fluid className="d-flex justify-content-center align-items-center min-vh-100">
       <Row className="justify-content-center w-100">
@@ -84,6 +102,24 @@ const Register = () => {
                   <option value="Other">Other</option>
                 </Form.Control>
               </Form.Group>
+
+              
+              {/* Gender Input */}
+              <Form.Group controlId="role" className="mb-3">
+                <Form.Label>Role</Form.Label>
+                <Form.Control
+                  as="select"
+                  name="role"
+                  value={formData.role}
+                  onChange={handleChange}
+                >
+                  <option value="">Select Role</option>
+                  <option value="User">User</option>
+                  <option value="PetParent">PetParent</option>
+                  <option value="Other">Other</option>
+                </Form.Control>
+              </Form.Group>
+              
 
               {/* Phone Number Input */}
               <Form.Group controlId="phoneNumber" className="mb-3">
@@ -132,12 +168,21 @@ const Register = () => {
                   onChange={handleChange}
                 />
               </Form.Group>
-
+              <p>
+                        Already have an account? <Link to="/login" className="text-primary">Login</Link>
+              </p>
               {/* Submit Button */}
               <Button variant="primary" type="submit" className="w-100">
                 Register
               </Button>
             </Form>
+            <hr />
+                <div className="text-center mt-3">
+                    <button className="btn btn-light border w-100 d-flex align-items-center justify-content-center" onClick={handleRegister}>
+                        <img src={googleLogo} alt="Google" className="me-2" style={{ width: '20px' }} />
+                        Sign up with Google
+                    </button>
+                </div>
           </div>
         </Col>
       </Row>

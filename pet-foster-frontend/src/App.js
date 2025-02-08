@@ -18,6 +18,8 @@ const App = () => {
         {/* Render the child components here */}
         <Outlet />  {/* This is where child routes will render */}
       </div>
+
+      <Footer />
     </div>
   );
 };
