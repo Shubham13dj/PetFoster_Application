@@ -1,0 +1,10 @@
+package com.petfoster.utility;
+
+/*
+ * For managing donations or adoption fees (if applicable).
+ */
+public class PaymentDonation {
+	
+	
+
+}

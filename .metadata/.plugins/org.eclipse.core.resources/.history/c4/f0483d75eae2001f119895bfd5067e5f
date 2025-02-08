@@ -1,0 +1,55 @@
+package com.petfoster.universal_pet_foster.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+public class PetApplication {
+    public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Long getPetId() {
+		return petId;
+	}
+	public void setPetId(Long petId) {
+		this.petId = petId;
+	}
+	public Long getFosterId() {
+		return fosterId;
+	}
+	public void setFosterId(Long fosterId) {
+		this.fosterId = fosterId;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getApplicantDetails() {
+		return applicantDetails;
+	}
+	public void setApplicantDetails(String applicantDetails) {
+		this.applicantDetails = applicantDetails;
+	}
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Long petId;
+    private Long fosterId;
+    private String status; // Pending, Approved, Rejected
+    private String applicantDetails;
+}

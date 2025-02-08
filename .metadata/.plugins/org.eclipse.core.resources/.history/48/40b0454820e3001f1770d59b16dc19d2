@@ -1,0 +1,40 @@
+package com.petfoster.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.petfoster.modelDTO.FosterDTO;
+import com.petfoster.services.FosterService;
+
+@RestController("/foster")
+public class FosterController {
+
+	@Autowired
+	private FosterService fosterService;
+	
+	@GetMapping
+	public List<FosterDTO> getAllFoster(){
+		return fosterService.getAllFoster();
+	}
+	
+	@GetMapping("/{id}")
+	public FosterDTO getFosterById(@PathVariable Long id) {
+		return fosterService.getFosterById(id);
+	}
+	
+	@PostMapping
+	public FosterDTO addFoster(FosterDTO fosterDTO) {
+		return fosterService.addFoster(fosterDTO);
+	}
+	
+	@PutMapping
+	public FosterDTO updateFoster(@PathVariable Long id, FosterDTO fosterDTO) {
+		return fosterService.updateFoster(id, fosterDTO);
+	}
+	
+}

@@ -1,0 +1,5 @@
+package com.petfoster.model;
+
+public class AdoptionRequest {
+
+}

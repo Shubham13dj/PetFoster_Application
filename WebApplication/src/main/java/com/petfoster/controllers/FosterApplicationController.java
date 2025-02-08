@@ -3,6 +3,7 @@ package com.petfoster.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import com.petfoster.modelDTO.PetApplicationDTO;
 import com.petfoster.services.PetApplicationService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/application")
 public class FosterApplicationController {
 

@@ -1,0 +1,13 @@
+package com.petfoster.model;
+
+
+public class AdoptionHistory {
+
+	/*
+	 * pet_id, adopter_id, adopted_date
+	 */
+	
+	/*
+	 * 	View adoption history for pets
+	 */
+}

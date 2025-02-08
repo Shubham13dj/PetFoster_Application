@@ -1,0 +1,29 @@
+package com.petfoster.model;
+
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+/*
+ * Handles requests for fostering pets.
+ */
+public class FosterRequest {
+
+	/*
+	 * request_id, user_id (foster parent), pet_id, request_date, status (pending, accepted, rejected), start_date, end_date, notes
+	 */
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long requestId;
+	
+	@ManyToOne
+	@JoinColumn(name = "foster_patent_uid")
+	private User fosterParent;
+	
+	
+	
+	
+}

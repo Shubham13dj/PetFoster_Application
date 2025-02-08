@@ -1,0 +1,14 @@
+package com.petfoster.model;
+
+public class Shelter {
+	/*
+	 * shelter_id, name, location, capacity, contact_info, available_pets_count
+	 */
+
+	/*
+	 *	Add and update shelter details
+	List pets in the shelter
+	Assign pets to foster homes
+ 
+	 */
+}

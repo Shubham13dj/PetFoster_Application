@@ -1,0 +1,52 @@
+package com.petfoster.services;
+
+package com.petfoster.service;
+
+import com.petfoster.model.PetHistory;
+import com.petfoster.repository.PetHistoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class PetHistoryService {
+
+    @Autowired
+    private PetHistoryRepository petHistoryRepository;
+
+    // Create a new PetHistory
+    public PetHistory createPetHistory(PetHistory petHistory) {
+        return petHistoryRepository.save(petHistory);
+    }
+
+    // Get all PetHistory records
+    public List<PetHistory> getAllPetHistories() {
+        return petHistoryRepository.findAll();
+    }
+
+    // Get PetHistory by ID
+    public Optional<PetHistory> getPetHistoryById(Long id) {
+        return petHistoryRepository.findById(id);
+    }
+
+    // Update PetHistory record
+    public PetHistory updatePetHistory(Long id, PetHistory updatedPetHistory) {
+        if (petHistoryRepository.existsById(id)) {
+            updatedPetHistory.setHistoryId(id); // Set the ID for the update
+            return petHistoryRepository.save(updatedPetHistory);
+        }
+        return null;  // Return null or throw an exception if not found
+    }
+
+    // Delete PetHistory record
+    public void deletePetHistory(Long id) {
+        petHistoryRepository.deleteById(id);
+    }
+
+    // Custom method to get PetHistory by Pet ID (for example, fetch history of a specific pet)
+    public List<PetHistory> getPetHistoryByPetId(Long petId) {
+        return petHistoryRepository.findByPet_PetId(petId); // Assuming a custom query method in repository
+    }
+}

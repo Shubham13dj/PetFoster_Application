@@ -1,0 +1,14 @@
+package com.petfoster.model;
+
+/*
+ * Allows foster parents to indicate their availability.
+ */
+public class FosterParentAvailability {
+
+	/*
+	 * o	Functionalities:
+	Set availability for fostering
+	Set preferences (e.g., certain pet types, ages)
+
+	 */
+}

@@ -1,0 +1,20 @@
+package com.petfoster.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.petfoster.model.AdoptionHistory;
+import com.petfoster.modelDTO.AdoptionHistoryDTO;
+import com.petfoster.repository.AdoptionHistoryRepository;
+
+@Service
+public class AdoptionHistoryService {
+
+	@Autowired
+	private AdoptionHistoryRepository adoptionHistoryRepository;
+	
+	public AdoptionHistoryDTO getAdoptionHistory(Long id)
+	{
+		AdoptionHistory history = adoptionHistoryRepository.findById(id).orElseThrow(()->new RuntimeException());
+	}
+}
