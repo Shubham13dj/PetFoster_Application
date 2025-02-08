@@ -28,6 +28,7 @@ function Navbar() {
     { link: 'Home', path: '/' },
     { link: 'About', path: '/about' },
     { link: 'Logout', path: '/logout' },
+    { link: 'Dashboard', path: '/dashboard' }
   ]
     :
   [ 

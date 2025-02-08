@@ -4,13 +4,14 @@ import com.petfoster.enums.util.UserRole;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
-import jakarta.persistence.Version;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -28,14 +29,16 @@ public class User {
 	private String email;
 	private String password;
 	
+	@Enumerated(EnumType.STRING)
 	private UserRole role;
+
 	
 	@Column(name = "is_enabled")
 	private boolean isEnabled;
 	
 	private Integer petCount;
 	
-	private String jsonToken;
+	//private String jsonToken;
 	
 	
 	@jakarta.persistence.Transient
@@ -54,12 +57,12 @@ public class User {
 	public String getGender() {
 		return gender;
 	}
-	public String getJsonToken() {
-		return jsonToken;
-	}
-	public void setJsonToken(String jsonToken) {
-		this.jsonToken = jsonToken;
-	}
+//	public String getJsonToken() {
+//		return jsonToken;
+//	}
+//	public void setJsonToken(String jsonToken) {
+//		this.jsonToken = jsonToken;
+//	}
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
@@ -88,18 +91,46 @@ public class User {
 	public void setEnabled(boolean isEnabled) {
 		this.isEnabled = isEnabled;
 	}
-	public User(long id, String firstName, String lastName, String gender, String phoneNumber,
-			String email, String password, String userType, boolean isEnabled, String specialization) {
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public UserRole getRole() {
+		return role;
+	}
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
+	public Integer getPetCount() {
+		return petCount;
+	}
+	public void setPetCount(Integer petCount) {
+		this.petCount = petCount;
+	}
+	public String getSpecialization() {
+		return specialization;
+	}
+	public void setSpecialization(String specialization) {
+		this.specialization = specialization;
+	}
+	
+	
+	public User(Long id, String name, String gender, String phoneNumber, String email, String password, String role,
+			boolean isEnabled , Integer petCount, String specialization) {
 		super();
 		this.id = id;
-		
-//		this.version = version;
+		this.name = name;
 		this.gender = gender;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
 		this.password = password;
-		
+		this.role = UserRole.valueOf(role.toUpperCase());
 		this.isEnabled = isEnabled;
+		this.petCount = petCount;
+//		this.jsonToken = jsonToken;
 		this.specialization = specialization;
 	}
 	public User() {

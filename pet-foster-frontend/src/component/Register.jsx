@@ -114,8 +114,8 @@ const Register = () => {
                   onChange={handleChange}
                 >
                   <option value="">Select Role</option>
-                  <option value="User">User</option>
-                  <option value="PetParent">PetParent</option>
+                  <option value="USER">User</option>
+                  <option value="FOSTER_PARENT">PetParent</option>
                   <option value="Other">Other</option>
                 </Form.Control>
               </Form.Group>

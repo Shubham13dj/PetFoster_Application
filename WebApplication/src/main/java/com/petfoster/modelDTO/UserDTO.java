@@ -43,6 +43,30 @@ public class UserDTO {
 		this.jsonToken = jsonToken;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public UserRole getRole() {
+		return role;
+	}
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
+	public Integer getPetCount() {
+		return petCount;
+	}
+	public void setPetCount(Integer petCount) {
+		this.petCount = petCount;
+	}
+	public String getSpecialization() {
+		return specialization;
+	}
+	public void setSpecialization(String specialization) {
+		this.specialization = specialization;
+	}
 	public long getId() {
 		return id;
 	}
@@ -81,18 +105,20 @@ public class UserDTO {
 	public void setEnabled(boolean isEnabled) {
 		this.isEnabled = isEnabled;
 	}
-	public UserDTO(long id, String firstName, String lastName, String gender, String phoneNumber,
-			String email, String password, String userType, boolean isEnabled, String specialization) {
+	
+	public UserDTO(long id, String name, String gender, String phoneNumber, String email, String password,
+			String role, boolean isEnabled, Integer petCount, String jsonToken, String specialization) {
 		super();
 		this.id = id;
-		
-//		this.version = version;
+		this.name = name;
 		this.gender = gender;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
 		this.password = password;
-		
+		this.role = UserRole.valueOf(role.toUpperCase());
 		this.isEnabled = isEnabled;
+		this.petCount = petCount;
+		this.jsonToken = jsonToken;
 		this.specialization = specialization;
 	}
 	public UserDTO() {

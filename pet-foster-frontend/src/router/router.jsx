@@ -9,6 +9,7 @@ import About from "../component/About";
 import Register from "../component/Register";
 import Homepage from "../component/Homepage";
 import Logout from "../component/Logout";
+import UserDashboard from "../component/UserDashboard";
 
   const router = createBrowserRouter([
     {
@@ -41,7 +42,11 @@ import Logout from "../component/Logout";
                 element: <Register />
             },{
                 path: "/login",
-                element: <Login/>
+                element: <Login />
+            },
+            {
+                path: "/dashboard",
+                element: <UserDashboard />
             }
         ]
     }
