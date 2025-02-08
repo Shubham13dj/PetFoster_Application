@@ -5,26 +5,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'; // Background and global styles
 import Layout from './component/Layout';
 import Authprovider from './context/Authprovider';
+import Navbar from './component/NavBar';
+import { Outlet } from 'react-router-dom';
+import Footer from './component/Footer';
+
 const App = () => {
   return (
-    <Authprovider>
-
-
-    <Router>
-      <div>
-        <h1 className="text-center mt-5">Welcome to PetFoster</h1>
-        <Routes> 
-	      <Route path="/" element={<Layout />}>
-          {/* Register route */}
-          <Route path="/register" element={<Register />} /> 
-          {/* Add other routes here if needed */}
-         
-	        </Route>
-        </Routes>
-        
+    <div>
+      <Navbar />  {/* Render the Navbar */}
+      
+      <div className="content">
+        {/* Render the child components here */}
+        <Outlet />  {/* This is where child routes will render */}
       </div>
-    </Router>
-    </Authprovider>
+    </div>
   );
 };
 

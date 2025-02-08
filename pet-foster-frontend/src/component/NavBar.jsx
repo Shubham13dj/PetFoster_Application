@@ -22,7 +22,7 @@ function Navbar() {
   const navItems = [
     { link: 'Home', path: '/' },
     { link: 'About', path: '/about' },
-    { link: 'Sign Up', path: '/Signup' },
+    { link: 'Sign Up', path: '/signup' },
     { link: 'Login', path: '/login' },
   ];
 
