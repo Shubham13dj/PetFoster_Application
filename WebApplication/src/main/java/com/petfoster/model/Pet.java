@@ -39,6 +39,102 @@ public class Pet {
 	
 	
 
+	public Integer getAge() {
+		return age;
+	}
+
+
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+
+
+	public String getSpecies() {
+		return species;
+	}
+
+
+
+	public void setSpecies(String species) {
+		this.species = species;
+	}
+
+
+
+	public String getHealthStatus() {
+		return healthStatus;
+	}
+
+
+
+	public void setHealthStatus(String healthStatus) {
+		this.healthStatus = healthStatus;
+	}
+
+
+
+	public boolean isAdopted() {
+		return adopted;
+	}
+
+
+
+	public void setAdopted(boolean adopted) {
+		this.adopted = adopted;
+	}
+
+
+
+	public boolean isFostered() {
+		return fostered;
+	}
+
+
+
+	public void setFostered(boolean fostered) {
+		this.fostered = fostered;
+	}
+
+
+
+	public String getLocation() {
+		return location;
+	}
+
+
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+
+
+	public String getPhotoUrl() {
+		return photoUrl;
+	}
+
+
+
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
+	}
+
+
+
+	public Long getVersion() {
+		return version;
+	}
+
+
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
+
+
 	public Pet(Long id, String name, String breed, String description, Foster foster, Long version) {
 		super();
 		this.id = id;
