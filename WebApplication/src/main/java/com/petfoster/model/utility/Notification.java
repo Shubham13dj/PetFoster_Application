@@ -1,6 +1,3 @@
-package com.petfoster.model.utility;
-
-public class Notification {
 
 	/*
 	 * o	Attributes: notification_id, user_id, type, message, status (read/unread), timestamp
@@ -9,4 +6,3 @@ o	Functionalities:
 	Notify when a pet is ready for adoption or fostering
 
 	 */
-}
