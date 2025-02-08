@@ -51,10 +51,12 @@ public class PetService {
 	}
 	
 	@Transactional
-	public PetDTO foster(Long id)
+	public PetDTO updatePet(Long id, PetDTO petDTO)
 	{
 		Pet pet = petRepository.findById(id).orElseThrow(()->new RuntimeException("Pet Not found"));
-		pet.setAdopted(true);
+		pet.setName(petDTO.getName());
+		pet.setBreed(petDTO.getBreed());
+		pet.setDescription(petDTO.getDescription().toString());
 		
 		pet = petRepository.save(pet);
 		return modelMapper.map(pet, PetDTO.class);

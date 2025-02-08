@@ -1,17 +1,29 @@
 
 .register-form {
     width: 100%;
-    
     max-width: 400px;
     margin: auto;
     padding: 2rem;
-    background-image: url('https://c1.wallpaperflare.com/preview/87/1016/10/dog-golden-retriever-golden-retriever.jpg');  /* Replace with your image URL */
-    background-size: cover;  /* Ensures the background image fills the container */
+    background-image: url('https://c1.wallpaperflare.com/preview/87/1016/10/dog-golden-retriever-golden-retriever.jpg');
+    background-size: cover;
     background-position: center;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(222, 217, 221, 0.1);
-  }
-  
+    position: relative; /* Add relative positioning for overlay */
+}
+
+.register-form::before {
+    content: ''; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.4);  /* Adjust this for the level of faintness */
+    border-radius: 8px;
+    z-index: -1;  /* Places the overlay behind the content */
+}
+
   h2 {
     color: #f4fafa; /* Ensures the text is visible on the background */
   }
