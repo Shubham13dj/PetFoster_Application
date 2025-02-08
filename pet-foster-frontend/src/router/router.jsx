@@ -5,6 +5,7 @@ import Login from "../component/Login";
 import CareerPage from "../component/CareerPage";
 import BlogPage from "../component/BlogPage";
 import TwitterPage from "../component/TwitterHelpCenter";
+import FacebookHelpCenter from "../component/FacebookHelpCenter";
 import {
     createBrowserRouter
   } from "react-router-dom";
@@ -64,7 +65,10 @@ import AddPetDetailsPage from "../component/AddPetDetailsPage";
             }, {
                 path: "/twitter",  
                 element: <TwitterPage />  
-            }
+            },{
+                path: "/facebook",   
+                element: <FacebookHelpCenter />,
+              }
         ]
     }
   ]

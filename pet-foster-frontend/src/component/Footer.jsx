@@ -23,7 +23,7 @@ function Footer() {
             <ul className="list-unstyled">
 
               <li><Link to="/twitter" className="text-light text-decoration-none">Twitter</Link></li>
-              <li><a href="#" className="text-light text-decoration-none">Facebook</a></li>
+              <li><Link to="/facebook" className="text-light text-decoration-none">Facebook</Link></li>
               <li><a href="#" className="text-light text-decoration-none">Contact Us</a></li>
             </ul>
           </div>
