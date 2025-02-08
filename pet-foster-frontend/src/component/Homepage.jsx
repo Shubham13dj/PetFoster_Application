@@ -1,9 +1,13 @@
+import Card from './Card'
 import React from 'react'
 
 function Homepage() {
   return (
-    <div>
-        <h1>Home</h1>
+    <div >
+      <div className='py-4'>
+      <Card/>
+      </div>
+        {/* <Card/> */}
     </div>
   )
 }

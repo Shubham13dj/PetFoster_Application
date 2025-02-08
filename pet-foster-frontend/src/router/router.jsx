@@ -15,7 +15,7 @@ import Homepage from "../component/Homepage";
         element : <App/>,
         children: [
             {
-                path: "/",
+                path: "",
                 element: <Homepage />
             },
             {
