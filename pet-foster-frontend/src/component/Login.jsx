@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/Authprovider';
 import googleLogo from '../imgs/google-logo.svg';
+import loginpagecopy from '../imgs/loginpagecopy.jpg';  // Import the image
 
 function Login() {
     const { login, loginWithGoogle } = useContext(AuthContext);
@@ -35,7 +36,15 @@ function Login() {
     };
 
     return (
-        <div className="d-flex align-items-center justify-content-center vh-100 bg-light">
+        <div
+            className="d-flex align-items-center justify-content-center vh-100"
+            style={{
+                backgroundImage: `url(${loginpagecopy})`,
+                backgroundSize: '80% 100%', 
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+            }}
+        >
             <div className="card shadow-lg p-4" style={{ width: "400px" }}>
                 <div className="card-body">
                     <h2 className="text-center text-primary">Login</h2>
@@ -70,7 +79,7 @@ function Login() {
                     </form>
 
                     <div className="text-center mt-3">
-                        <p>Don't have an account? <Link to="/sign-up" className="text-primary">Sign Up</Link></p>
+                        <p>Don't have an account? <Link to="/signup" className="text-primary">Sign Up</Link></p>
                     </div>
 
                     <hr />
@@ -88,3 +97,5 @@ function Login() {
 }
 
 export default Login;
+
+
