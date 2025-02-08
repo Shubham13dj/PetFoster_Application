@@ -87,6 +87,11 @@ public class PetService {
 	{
 		return modelMapper.map(petRepository.findByLocation(location), PetDTO.class);
 	}
+	
+	public PetDTO getPetByUserId(Long userId)
+	{
+		return modelMapper.map(petRepository.findByUserId(userId), PetDTO.class);
+	}
 	/* Pending functionalities
 	 * 
 	List available pets for fostering

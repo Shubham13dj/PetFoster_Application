@@ -10,6 +10,7 @@ import Register from "../component/Register";
 import Homepage from "../component/Homepage";
 import Logout from "../component/Logout";
 import UserDashboard from "../component/UserDashboard";
+import AddPetDetailsPage from "../component/AddPetDetailsPage";
 
   const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ import UserDashboard from "../component/UserDashboard";
             {
                 path: "/dashboard",
                 element: <UserDashboard />
+            },
+            {
+                path: "/add-pet",
+                element: <AddPetDetailsPage />
             }
         ]
     }

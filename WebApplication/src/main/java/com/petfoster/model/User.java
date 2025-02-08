@@ -1,16 +1,21 @@
 package com.petfoster.model;
 
+import java.util.List;
+
 import com.petfoster.enums.util.UserRole;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -38,6 +43,10 @@ public class User {
 	
 	private Integer petCount;
 	
+	 @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	    private List<Pet> pets; // A user can have many pets
+
+	  	
 	//private String jsonToken;
 	
 	
@@ -116,6 +125,15 @@ public class User {
 	public void setSpecialization(String specialization) {
 		this.specialization = specialization;
 	}
+	  // Getters and Setters
+    public List<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
+    }
+
 	
 	
 	public User(Long id, String name, String gender, String phoneNumber, String email, String password, String role,

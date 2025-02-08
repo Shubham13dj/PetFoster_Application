@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
+import axios from 'axios';
+import { toast } from 'react-hot-toast'
 
 const AddPetDetailsPage = () => {
   // State hooks to store form values and validation errors
@@ -15,7 +17,7 @@ const AddPetDetailsPage = () => {
   const [success, setSuccess] = useState(false);
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     // Basic validation: Check if all fields are filled and photo is uploaded
@@ -24,6 +26,7 @@ const AddPetDetailsPage = () => {
       setSuccess(false);
       return;
     }
+
 
     // Validate Pet Name (should not be a number or special character)
     if (!/^[A-Za-z\s]+$/.test(petName)) {
@@ -46,20 +49,45 @@ const AddPetDetailsPage = () => {
       return;
     }
 
-    // If validation passes
-    setError('');
-    setSuccess(true);
-    console.log('Pet Added:', { petName, petAge, species, breed, healthStatus, location, description, photo });
+     // Create form data to send to the backend
+     const formData = new FormData();
+     formData.append('petName', petName);
+     formData.append('petAge', petAge);
+     formData.append('species', species);
+     formData.append('breed', breed);
+     formData.append('healthStatus', healthStatus);
+     formData.append('location', location);
+     formData.append('description', description);
+     formData.append('photo', photo); // The file input will be in the "photo" state
+      console.log(formData);
+     try {
+       // Make an Axios request to submit the form
+       const response = await axios.post('http://localhost:9000/pets', formData, {
+         headers: {
+           'Content-Type': 'multipart/form-data', // Important for uploading files
+         },
+       });
 
-    // Reset form after successful submission
-    setPetName('');
-    setPetAge('');
-    setSpecies('');
-    setBreed('');
-    setHealthStatus('');
-    setLocation('');
-    setDescription('');
-    setPhoto(null);
+           // If validation passes
+       setError('');
+       setSuccess(true);
+       console.log('Pet Added:', { petName, petAge, species, breed, healthStatus, location, description, photo });
+   
+       // Reset form after successful submission
+       setPetName('');
+       setPetAge('');
+       setSpecies('');
+       setBreed('');
+       setHealthStatus('');
+       setLocation('');
+       setDescription('');
+       setPhoto(null);
+      }
+      catch{
+        toast.error("Error: Cannont insert Data");
+      }
+
+   
   };
 
   // Handle form reset

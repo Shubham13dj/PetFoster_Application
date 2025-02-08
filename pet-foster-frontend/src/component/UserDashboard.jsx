@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast';
 import axios from 'axios';
 
 function UserDashboard() {
-  const { userAuth, setUserAuth } = useContext(UserContext);  // User info context
+  const { userAuth, userAuth: { jsonToken }, setUserAuth } = useContext(UserContext);  // User info context
   const [pets, setPets] = useState([]);
   const navigate = useNavigate();
 
@@ -16,7 +16,11 @@ function UserDashboard() {
       navigate('/login');
     } else {
       // Fetch user details from the server
-      axios.get(`http://localhost:9000/users/${userAuth.id}`)
+      axios.get(`http://localhost:9000/users/${userAuth.id}`, {
+        headers: {
+          "Authorization": `Bearer ${jsonToken}` // Add your token here
+      }
+      })
         .then(response => {
           // You can store user details in state if needed, or use it directly
           console.log('User Details:', response.data);
@@ -26,7 +30,11 @@ function UserDashboard() {
         });
 
       // Fetch pets related to the logged-in user
-      axios.get(`http://localhost:9000/users/${userAuth.id}/pets`)
+      axios.get(`http://localhost:9000/pets/user/${userAuth.id}`,{
+        headers: {
+          "Authorization": `Bearer ${jsonToken}` // Add your token here
+      }
+      })
         .then(response => {
           setPets(response.data);
         })

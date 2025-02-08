@@ -27,8 +27,8 @@ public class Pet {
 	
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+	@JoinColumn(name = "foster_id")
+	private Foster foster;
 	
 	@Version
 	private Long version;
@@ -135,13 +135,13 @@ public class Pet {
 
 
 
-	public Pet(Long id, String name, String breed, String description, User user, Long version) {
+	public Pet(Long id, String name, String breed, String description, Foster foster, Long version) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.breed = breed;
 		this.description = description;
-		this.user = user;
+		this.foster = foster;
 		this.version = version;
 	}
 
@@ -179,13 +179,13 @@ public class Pet {
 		this.description = description;
 	}
 
-//	public Foster getFoster() {
-//		return foster;
-//	}
-//
-//	public void setFoster(Foster foster) {
-//		this.foster = foster;
-//	}
+	public Foster getFoster() {
+		return foster;
+	}
+
+	public void setFoster(Foster foster) {
+		this.foster = foster;
+	}
 
 	
 }
