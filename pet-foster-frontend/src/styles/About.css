@@ -1,0 +1,42 @@
+/* About Page Styles */
+.container {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  h2 {
+    color: #ff6f61;
+  }
+  
+  h3 {
+    color: #343a40;
+  }
+  
+  .img-fluid {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .img-fluid:hover {
+    transform: scale(1.05);
+  }
+  
+  .btn-primary {
+    background-color: #ff6f61;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #e85b50;
+  }
+  
+  /* Fade-in Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
