@@ -27,8 +27,8 @@ public class Pet {
 	
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+	@JoinColumn(name = "foster_id")
+	private Foster user;
 	
 	@Version
 	private Long version;
