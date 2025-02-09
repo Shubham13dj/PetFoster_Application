@@ -43,8 +43,8 @@ public class User {
 	
 	private Integer petCount;
 	
-	 @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	    private List<Pet> pets; // A user can have many pets
+	 // @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	 //    private List<Pet> pets; // A user can have many pets
 
 	  	
 	//private String jsonToken;
