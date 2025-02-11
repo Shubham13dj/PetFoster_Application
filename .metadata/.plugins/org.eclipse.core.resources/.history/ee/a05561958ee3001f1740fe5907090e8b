@@ -1,7 +1,0 @@
-package com.petfoster.model.utils;
-
-public enum UserRole {
-	FOSTER_PARENT,
-	SHELTER,
-	ADOPTER
-}

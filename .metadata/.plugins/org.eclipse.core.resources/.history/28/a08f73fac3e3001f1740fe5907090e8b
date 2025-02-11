@@ -1,7 +1,0 @@
-package com.petfoster.controllers;
-
-@RestMapping
-@RequestMapping("/")
-public class FosterRequestController {
-
-}

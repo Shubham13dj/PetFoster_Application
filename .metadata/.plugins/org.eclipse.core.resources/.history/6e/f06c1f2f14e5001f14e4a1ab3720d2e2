@@ -1,5 +1,0 @@
-package com.petfoster.utils;
-
-public class JwtAuthenticationFilter {
-
-}

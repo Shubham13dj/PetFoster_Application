@@ -1,9 +1,0 @@
-package com.petfoster.model;
-
-public class PetHistory {
-	
-	/*
-	 * pet_id, foster_start_date, foster_end_date, shelter_id, foster_parent_id, medical_history, notes
-	 */
-
-}

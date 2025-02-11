@@ -1,8 +1,0 @@
-package com.petfoster.model;
-
-/*
- * Allows foster parents to indicate their availability.
- */
-public class FosterParentAvailability {
-
-}

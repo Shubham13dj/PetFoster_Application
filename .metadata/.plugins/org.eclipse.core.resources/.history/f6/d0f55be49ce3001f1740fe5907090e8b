@@ -1,7 +1,0 @@
-package com.petfoster.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface PetHistoryRepository extends JpaRepository<T, ID> {
-
-}
