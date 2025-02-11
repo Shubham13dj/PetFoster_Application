@@ -32,12 +32,12 @@ import Petdetails from "../component/PetDetailsPage"
                 element: <About />
             },
             {
-                path: "/pet-details",
+                path: "/pet-details/:id",
                 element: <Petdetails />
             }
             ,
             {
-                path: "/foster_request",
+                path: "/foster_request/:id",
                 element: <FosterRequestPage />
             },
             {

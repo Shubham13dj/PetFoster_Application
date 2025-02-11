@@ -77,6 +77,13 @@ public class PetService {
 		
 	}
 	
+	@Transactional
+	public void changeFosteredStatus(Long id, boolean status)
+	{
+		Pet pet = petRepository.findById(id).orElseThrow();
+		pet.setFostered(status);
+		petRepository.save(pet);
+	}
 	
 	
 	@Transactional

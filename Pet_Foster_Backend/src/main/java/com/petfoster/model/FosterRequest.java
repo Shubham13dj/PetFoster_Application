@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -88,8 +89,8 @@ public class FosterRequest {
 		return status;
 	}
 
-	public void setStatus(RequestStatus status) {
-		this.status = status;
+	public void setStatus(RequestStatus requestStatus) {
+		this.status = requestStatus;
 	}
 
 	public Date getStartDate() {

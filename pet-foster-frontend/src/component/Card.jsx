@@ -47,8 +47,8 @@ const Card = () => {
         });
     });
   }, [pets]); // Only re-run when pets state changes
-  function handleViewDetails () {
-    navigate("/pet-details");
+  function handleViewDetails (pet) {
+    navigate(`/pet-details/${pet.id}`);
   }
   function handleFosterNow(pet) {
    
@@ -101,7 +101,7 @@ const Card = () => {
                   ""
                   :
                   <>
-                  <button onClick={handleViewDetails}>
+                  <button onClick={()=>handleViewDetails(pet)}>
                     View details
                   </button>
                   <button onClick={()=>handleFosterNow(pet)}>

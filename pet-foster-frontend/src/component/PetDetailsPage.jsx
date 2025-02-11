@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios'; // Import axios for API calls
 import '../styles/PetDetailsPage.css'; // Import custom CSS for styling
+import { useParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { UserContext } from '../App';
 
-const PetDetailsPage = ({ petId }) => {
+const PetDetailsPage = () => {
+
+  const { userAuth, userAuth:{ jsonToken }} = useContext(UserContext);
+  const petId = useParams().id;
   const [pet, setPet] = useState(null);
   const [adoptionHistory, setAdoptionHistory] = useState([]);
   const [medicalHistory, setMedicalHistory] = useState([]);
@@ -10,7 +16,11 @@ const PetDetailsPage = ({ petId }) => {
   // Fetch pet details, adoption history, and medical history
   useEffect(() => {
     // Fetch pet details
-    axios.get(`http://localhost:9000/pets/${petId}`)
+    axios.get(`http://localhost:9000/pets/${petId}`,{
+      headers:{
+        'Authorization': `Bearer ${jsonToken}`
+      }
+    })
       .then((response) => {
         setPet(response.data); // Set pet details
       })
@@ -19,7 +29,11 @@ const PetDetailsPage = ({ petId }) => {
       });
 
     // Fetch adoption history
-    axios.get(`http://localhost:9000/pets/${petId}/adoptions`)
+    axios.get(`http://localhost:9000/adoption-history/${petId}`, {
+      headers:{
+        'Authorization': `Bearer ${jsonToken}`
+      }
+    })
       .then((response) => {
         setAdoptionHistory(response.data); // Set adoption history
       })
@@ -27,8 +41,18 @@ const PetDetailsPage = ({ petId }) => {
         console.error('Error fetching adoption history:', error);
       });
 
+
+      /*
+        Url need to change
+      */
+
+
     // Fetch medical history
-    axios.get(`http://localhost:9000/pets/${petId}/medical-history`)
+    axios.get(`http://localhost:9000/pet-history/${petId}`,{
+      headers:{
+        'Authorization': `Bearer ${jsonToken}`
+      }
+    })
       .then((response) => {
         setMedicalHistory(response.data); // Set medical history
       })
@@ -47,7 +71,7 @@ const PetDetailsPage = ({ petId }) => {
     // Handle fostering logic, e.g., making an API call to update the pet's foster status
   };
 
-  if (!pet) return <div>Loading...</div>; // Show loading while fetching data
+  if (!pet) return toast.loading(); // Show loading while fetching data
 
   return (
     <div className="pet-details-container">

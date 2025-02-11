@@ -1,19 +1,26 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Form, Button, Container, Card, Row, Col, Alert } from 'react-bootstrap';
 import axios from 'axios'; // Import axios
 import { UserContext } from '../App';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const FosterRequestPage = () => {
+
   
-  const { state } = useLocation(); // This will get the state passed from the previous page
-  const pet = state?.pet; // Extract the pet object
+  // const { state } = useLocation(); // This will get the state passed from the previous page
+  // const pet = state?.pet; // Extract the pet object
+
+  const Id = useParams()
+  const petId = Id.id;
+  console.log(petId);
 
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [notes, setNotes] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [ pet, setPet ] = useState()
 
   const { userAuth,userAuth: { jsonToken } } = useContext(UserContext);
 
@@ -39,7 +46,7 @@ const FosterRequestPage = () => {
     const date = new Date().toISOString();
 
     const formData = {
-      petId: pet.id, // Include pet ID in the request
+      petId: petId, // Include pet ID in the request
       startDate: startDate,
       endDate: endDate,
       notes: notes,
@@ -48,10 +55,11 @@ const FosterRequestPage = () => {
     };
 
     // console.log(fosterRequestDTO);
-
+    
+   
     // Axios POST request to the backend
     try {
-      const response = await axios.post(`http://localhost:9000/foster-request/${userAuth.id}/${pet.id}`, formData, {
+      const response = await axios.post(`http://localhost:9000/foster-request/${userAuth.id}/${petId}`, formData, {
         headers: {
           'Authorization': `Bearer ${jsonToken}`,
           'Content-Type': 'application/json', // Ensure the correct content type
@@ -66,6 +74,24 @@ const FosterRequestPage = () => {
       setSuccess(false);
     }
   };
+
+  useEffect(()=>{
+    try{
+      axios.get(`http://localhost:9000/pets/${petId}`, {
+        headers:{
+          'Authorization': `Bearer ${jsonToken}`
+        }
+      })
+      .then((response)=>{
+        setPet(response.data)
+      })
+      .catch(()=>{
+        toast.error("pet not found")
+      })
+    }catch{
+
+    }
+  },[])
 
   const handleClear = () => {
     setStartDate('');
@@ -133,7 +159,7 @@ const FosterRequestPage = () => {
                   <Form.Label className="fw-bold">Pet ID</Form.Label>
                   <Form.Control
                     type="text"
-                    value={pet ? pet.id : ''}
+                    value={petId ? petId : ''}
                     readOnly
                     disabled
                   />

@@ -88,7 +88,7 @@ import com.petfoster.services.PetService;
 		    	return ResponseEntity.ok(petService.getPetLocation(location));
 		    }
 		    
-		    @GetMapping("/{age}")
+		    @GetMapping("/age/{age}")
 		    public ResponseEntity<PetDTO> getByAge(@PathVariable Integer age)  
 		    {
 		    	return ResponseEntity.ok(petService.getPetByAge(age));

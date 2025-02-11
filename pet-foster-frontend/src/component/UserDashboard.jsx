@@ -68,6 +68,7 @@ function UserDashboard() {
     <div className="container mt-5">
       <div className="user-details mt-4">
         <h3 style={{ color: 'blue' }}>User Name: {userAuth?.name}</h3>
+        <p>Role: {userAuth?.role}</p>
         <p><strong>Email:</strong> {userAuth?.email}</p>
         <p><strong>Phone Number:</strong> {userAuth?.phoneNumber}</p>
         <p><strong>Gender:</strong> {userAuth?.gender}</p>
@@ -112,6 +113,11 @@ function UserDashboard() {
                         onClick={() => handleDeletePet(pet.id)}
                       >
                         Delete Pet
+                      </button>
+                      <button
+                        onClick={()=> navigate(`/foster_request/${pet.id}`)}
+                      >
+                        Request to foster
                       </button>
                     </div>
                   </div>

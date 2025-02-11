@@ -67,6 +67,27 @@ public class FosterRequestService {
         return null;  // Or throw an exception
     }
 
+    @Transactional
+    public void changeStatusOfRequest(Long id, FosterRequestDTO fostDTO)
+    {	
+    	FosterRequest fosterRequest = fosterRequestRepository.findById(id).orElseThrow();
+    	
+    	fosterRequest.setStatus(fostDTO.getStatus());
+    	
+    	User fosterParent = userRepo.findById(id).orElseThrow();
+    	
+    	fosterRequest.setFosterParent(fosterParent);
+    	
+    	Pet pet = petRepo.findById(fosterRequest.getPet().getId()).orElseThrow();
+    	
+    	if(fostDTO.getStatus().equals("ACCEPTED"))
+    	pet.setFostered(true);
+    	
+    	if(fostDTO.getStatus().equals("REJECTED"))
+    		pet.setFostered(false);
+    	
+    }
+    
     // Delete a foster request
     @Transactional
     public void deleteFosterRequest(Long id) {
