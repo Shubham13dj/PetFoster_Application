@@ -1,27 +1,63 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios'; // Import axios
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import './Card.css'; // Import the CSS file
+import { UserContext } from '../App';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 // Card component
 const Card = () => {
+  let navigate = useNavigate();
+  const { userAuth:{ jsonToken }} = useContext(UserContext);
   const [pets, setPets] = useState([]);
+  const [petImages, setPetImages] = useState({}); // Store pet images by ID
 
-  // Fetch data from the API
+  // Fetch pet data from the API using axios
   useEffect(() => {
-    fetch('http://localhost:8080/pets')
-      .then((response) => response.json()) // Parse the response to JSON
-      .then((data) => {
-        console.log('Fetched Data:', data); // Log the data
-        setPets(data); // Set the fetched data in the state
+    axios.get('http://localhost:9000/pets',{
+      headers:{
+        "Authorization": `Bearer ${jsonToken}`
+      }
+    })
+      .then((response) => {
+        console.log('Fetched Data:', response.data); // Log the data
+        setPets(response.data); // Set the fetched data in the state
       })
       .catch((error) => {
         console.error('Error fetching pets:', error); // Log any errors that happen during fetch
       });
   }, []); // Empty dependency array means this runs once when the component mounts
 
+  // Fetch the pet images for each pet and store them in state using axios
+  useEffect(() => {
+    pets.forEach((pet) => {
+      axios.get(`http://localhost:9000/pets/img/${pet.id}`, { responseType: 'blob' })
+        .then((response) => {
+          const imageUrl = URL.createObjectURL(response.data); // Create a URL for the image blob
+          setPetImages((prevImages) => ({
+            ...prevImages,
+            [pet.id]: imageUrl, // Save image URL by pet ID
+          }));
+        })
+        .catch((error) => {
+          console.error(`Error fetching image for pet ${pet.id}:`, error);
+        });
+    });
+  }, [pets]); // Only re-run when pets state changes
+  function handleViewDetails () {
+    navigate("/pet-details");
+  }
+  function handleFosterNow(pet) {
+   
+    navigate("/foster_request", { state: { pet } });
+  }
+
+  function handleAdoptToday(){
+
+  }
   const filteredPets = pets.filter((pet) => pet.fostered === false); // Filter only unfostered pets
 
   // Render the Swiper with cards
@@ -39,10 +75,15 @@ const Card = () => {
       >
         {/* Map through the filtered pets data and create a Card for each one */}
         {filteredPets.map((pet) => (
-          <SwiperSlide key={pet.foster_id}>
+          <SwiperSlide key={pet.id}>
             <div className="card">
               {/* Image section */}
-              <img src={pet.photo_url} alt={pet.name} className="card-img-top" />
+              <img 
+                src={petImages[pet.id] || 'http://localhost:9000/images/default-image.jpg'} // Fallback to default image if not loaded
+                alt={pet.name} 
+                className="card-img-top" 
+                style={{ width: '100%', height: 'auto' }} // Optional inline styling
+              />
 
               {/* Card body */}
               <div className="card-body">
@@ -54,6 +95,23 @@ const Card = () => {
                   {pet.adopted ? "Adopted" : "Available for Adoption"} | 
                   {pet.fostered ? " Fostered" : " Not Fostered"}
                 </p>
+                {
+                  pet.fostered
+                  ?
+                  ""
+                  :
+                  <>
+                  <button onClick={handleViewDetails}>
+                    View details
+                  </button>
+                  <button onClick={()=>handleFosterNow(pet)}>
+                    Foster Now
+                  </button>
+                  <button onClick={handleAdoptToday}>
+                    Adopt Today
+                  </button>
+                  </>
+                }
               </div>
             </div>
           </SwiperSlide>

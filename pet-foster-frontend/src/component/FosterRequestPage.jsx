@@ -1,21 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Form, Button, Container, Card, Row, Col, Alert } from 'react-bootstrap';
+import axios from 'axios'; // Import axios
+import { UserContext } from '../App';
+import { useLocation } from 'react-router-dom';
 
 const FosterRequestPage = () => {
-  // State hooks to store form values and validation errors
+  
+  const { state } = useLocation(); // This will get the state passed from the previous page
+  const pet = state?.pet; // Extract the pet object
+
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [notes, setNotes] = useState('');
-  const [petId, setPetId] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const { userAuth,userAuth: { jsonToken } } = useContext(UserContext);
 
-    // Basic validation: Check if all fields are filled and start date is before end date
-    if (!startDate || !endDate || !petId) {
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+    console.log(startDate + ' '+ endDate);
+    if (!startDate || !endDate) {
       setError('Please fill out all required fields.');
       setSuccess(false);
       return;
@@ -27,19 +33,44 @@ const FosterRequestPage = () => {
       return;
     }
 
-    // If validation passes
     setError('');
     setSuccess(true);
-    console.log('Foster Request Submitted:', { startDate, endDate, notes, petId });
-    alert('Foster request submitted successfully!');
+
+    const date = new Date().toISOString();
+
+    const formData = {
+      petId: pet.id, // Include pet ID in the request
+      startDate: startDate,
+      endDate: endDate,
+      notes: notes,
+      userId: userAuth.id,
+      requestDate: date
+    };
+
+    // console.log(fosterRequestDTO);
+
+    // Axios POST request to the backend
+    try {
+      const response = await axios.post(`http://localhost:9000/foster-request/${userAuth.id}/${pet.id}`, formData, {
+        headers: {
+          'Authorization': `Bearer ${jsonToken}`,
+          'Content-Type': 'application/json', // Ensure the correct content type
+        },
+      });
+      console.log('Foster Request Submitted:', response.data);
+      alert('Foster request submitted successfully!');
+
+    } catch (error) {
+      console.error('Error submitting foster request:', error);
+      setError('There was an error submitting your request. Please try again.');
+      setSuccess(false);
+    }
   };
 
-  // Handle form reset
   const handleClear = () => {
     setStartDate('');
     setEndDate('');
     setNotes('');
-    setPetId('');
     setError('');
     setSuccess(false);
   };
@@ -51,9 +82,9 @@ const FosterRequestPage = () => {
           <Card className="shadow-lg rounded p-4">
             <Card.Body>
               <h2 className="text-center mb-4" style={{ color: '#2c3e50' }}>
-                Foster Request Form
+                Foster Request Form for {pet ? pet.name : 'Pet'}
               </h2>
-              
+
               {error && <Alert variant="danger">{error}</Alert>}
               {success && <Alert variant="success">Form submitted successfully!</Alert>}
 
@@ -97,19 +128,15 @@ const FosterRequestPage = () => {
                   />
                 </Form.Group>
 
+                {/* Display pet ID without input */}
                 <Form.Group controlId="formPetId">
                   <Form.Label className="fw-bold">Pet ID</Form.Label>
                   <Form.Control
                     type="text"
-                    value={petId}
-                    onChange={(e) => setPetId(e.target.value)}
-                    isInvalid={!petId}
-                    required
-                    placeholder="Enter Pet ID"
+                    value={pet ? pet.id : ''}
+                    readOnly
+                    disabled
                   />
-                  <Form.Control.Feedback type="invalid">
-                    Please enter a pet ID.
-                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <div className="mt-4 d-flex justify-content-between">

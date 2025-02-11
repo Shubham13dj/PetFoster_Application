@@ -1,6 +1,5 @@
 import { Children } from "react";
 import App from "../App";
-import SignUp from "../component/SignUp";
 import Login from "../component/Login";
 import CareerPage from "../component/CareerPage";
 import BlogPage from "../component/BlogPage";
@@ -16,6 +15,8 @@ import Homepage from "../component/Homepage";
 import Logout from "../component/Logout";
 import UserDashboard from "../component/UserDashboard";
 import AddPetDetailsPage from "../component/AddPetDetailsPage";
+import FosterRequestPage from "../component/FosterRequestPage";
+import Petdetails from "../component/PetDetailsPage"
 
   const router = createBrowserRouter([
     {
@@ -23,22 +24,22 @@ import AddPetDetailsPage from "../component/AddPetDetailsPage";
         element : <App/>,
         children: [
             {
-                path: "",
+                path: "/",
                 element: <Homepage />
             },
             {
                 path: "/about",
                 element: <About />
             },
-            // {
-            //     path: "/shop",
-            //     element: <h1>Shop</h1>
-            // }
-            // ,
-            // {
-            //     path: "/contact",
-            //     element: <h1>Contact</h1>
-            // },
+            {
+                path: "/pet-details",
+                element: <Petdetails />
+            }
+            ,
+            {
+                path: "/foster_request",
+                element: <FosterRequestPage />
+            },
             {
                 path: "/logout",
                 element: <Logout />

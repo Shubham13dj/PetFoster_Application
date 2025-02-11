@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
 import axios from 'axios';
 import { toast } from 'react-hot-toast'
+import { UserContext } from '../App';
 
 const AddPetDetailsPage = () => {
   // State hooks to store form values and validation errors
@@ -16,12 +17,16 @@ const AddPetDetailsPage = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
+  let { userAuth,userAuth:{ jsonToken }} = useContext(UserContext);
+
+  // console.log(jsonToken);
   // Handle form submission
   const handleSubmit = async(e) => {
+    console.log(userAuth.id);
     e.preventDefault();
 
     // Basic validation: Check if all fields are filled and photo is uploaded
-    if (!petName || !petAge || !species || !breed || !healthStatus || !location || !description || !photo) {
+    if (!petName || !petAge || !species || !breed || !healthStatus || !location /*|| !description || !photo*/) {
       setError('Please fill out all fields and upload a photo.');
       setSuccess(false);
       return;
@@ -51,20 +56,41 @@ const AddPetDetailsPage = () => {
 
      // Create form data to send to the backend
      const formData = new FormData();
-     formData.append('petName', petName);
-     formData.append('petAge', petAge);
-     formData.append('species', species);
-     formData.append('breed', breed);
-     formData.append('healthStatus', healthStatus);
-     formData.append('location', location);
-     formData.append('description', description);
-     formData.append('photo', photo); // The file input will be in the "photo" state
+     const petData = {
+      name: petName,
+      age: petAge,
+      species: species,
+      breed: breed,
+      healthStatus: healthStatus,
+      location: location,
+      description: description
+  };
+
+  formData.append('petDetails', new Blob([JSON.stringify(petData)], { type: 'application/json' }));
+
+    formData.append('imageData', photo); // The file input will be in the "photo" state
+
+     formData.append("userId", userAuth.id)
       console.log(formData);
+
+      // const petData = {
+      //   name: petName,
+      //   age: petAge,
+      //   species: species,
+      //   breed: breed,
+      //   healthStatus: healthStatus,
+      //   location: location,
+      //   description: description,
+      //   userId: userAuth.id // Add the user ID here
+      // };
+     
+      // console.log(petData);
      try {
        // Make an Axios request to submit the form
-       const response = await axios.post('http://localhost:9000/pets', formData, {
+       const response = await axios.post(`http://localhost:9000/pets/${userAuth.id}`, formData, {
          headers: {
-           'Content-Type': 'multipart/form-data', // Important for uploading files
+            'Authorization': `Bearer ${jsonToken}`,
+          //  'Content-Type': 'multipart/formData', // Important for uploading files
          },
        });
 
@@ -229,14 +255,14 @@ const AddPetDetailsPage = () => {
                 </Form.Group>
 
                 {/* Photo Upload */}
-                <Form.Group controlId="formPhoto">
+                { <Form.Group controlId="formPhoto">
                   <Form.Label className="fw-bold">Upload Photo</Form.Label>
                   <Form.Control
                     type="file"
                     onChange={handlePhotoChange}
                     required
                   />
-                </Form.Group>
+                </Form.Group> }
 
                 {/* Submit and Clear Buttons */}
                 <div className="mt-4 d-flex justify-content-between">

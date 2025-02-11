@@ -28,16 +28,20 @@ const App = () => {
   return (
     <UserContext.Provider value={{userAuth, setUserAuth}}>
     <div className="app-container">
+      <header>
       <Navbar />  {/* Render the Navbar */}
-      
-      <div className="content">
+      </header>
+
+      <main  className="content">
         {/* Render the child components here */}
         <Outlet />  {/* This is where child routes will render */}
-      </div>
+    
+      </main>
 
-      <div className="footer">
+      <footer className="footer">
         <Footer /> {/* Render the Footer */}
-      </div>
+      </footer>
+     
     </div>
     </UserContext.Provider>
   );
