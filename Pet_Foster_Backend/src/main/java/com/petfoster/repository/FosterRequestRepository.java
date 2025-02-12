@@ -7,5 +7,6 @@ import com.petfoster.model.FosterRequest;
 
 @Repository
 public interface FosterRequestRepository extends JpaRepository<FosterRequest, Long> {
-
+	
+	FosterRequest findByPetId(Long petId);
 }

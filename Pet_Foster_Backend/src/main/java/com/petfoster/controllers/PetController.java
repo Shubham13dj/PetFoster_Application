@@ -51,7 +51,8 @@ import com.petfoster.services.PetService;
 		    public ResponseEntity<byte []> getImageById(@PathVariable int petId)
 		    {
 		    	return ResponseEntity.status(200)
-		    			.contentType(MediaType.valueOf(petService.getPetById(Long.valueOf(petId)).getImageType())).body(petService.getPetImageById(Long.valueOf(petId)));
+		    			.contentType(MediaType.valueOf(petService.getPetById(Long.valueOf(petId)).getImageType()))
+		    			.body(petService.getPetImageById(Long.valueOf(petId)));
 		    }
 		    
 		    @PostMapping("/{userId}")

@@ -20,11 +20,31 @@ public class Pet {
 	private String species;
 	private String breed;
 	private String healthStatus;
+	private boolean availableToAdopt;
 	private boolean adopted;
+	private boolean availableToFoster;
 	private boolean fostered;
+
+	public boolean isAvailableToAdopt() {
+		return availableToAdopt;
+	}
+
+	public void setAvailableToAdopt(boolean availableToAdopt) {
+		this.availableToAdopt = availableToAdopt;
+	}
+
+	public boolean isAvailableToFoster() {
+		return availableToFoster;
+	}
+
+	public void setAvailableToFoster(boolean availableToFoster) {
+		this.availableToFoster = availableToFoster;
+	}
+
 	private String location;
-	
+
 	private String imageName;
+
 	public String getImageName() {
 		return imageName;
 	}
@@ -50,16 +70,15 @@ public class Pet {
 	}
 
 	private String imageType;
-	
+
 	@Lob
 	private byte[] imageData;
-	
+
 	private String description;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
-
 
 	public User getUser() {
 		return user;
@@ -125,10 +144,6 @@ public class Pet {
 		this.location = location;
 	}
 
-	
-
-	
-
 	public Pet(Long id, String name, Integer age, String species, String breed, String healthStatus, boolean adopted,
 			boolean fostered, String location, String photoName, String description, User user, Long version) {
 		super();
@@ -141,13 +156,11 @@ public class Pet {
 		this.adopted = adopted;
 		this.fostered = fostered;
 		this.location = location;
-		
+
 		this.description = description;
 		this.user = user;
 		this.version = version;
 	}
-
-	
 
 	public Long getVersion() {
 		return version;

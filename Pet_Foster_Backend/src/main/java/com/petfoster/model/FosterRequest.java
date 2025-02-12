@@ -35,8 +35,13 @@ public class FosterRequest {
 	private long Id;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	@JoinColumn(name = "foster_parent_id", referencedColumnName = "id")
 	private User fosterParent;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	private User parent;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "pet_id", referencedColumnName = "id")
@@ -56,17 +61,28 @@ public class FosterRequest {
 		this.fosterParent = fosterParent;
 	}
 
-	public FosterRequest(long id, User fosterParent, Pet pet, Date requestDate, RequestStatus status, Date startDate,
-			Date endDate, String notes) {
+	
+
+	public FosterRequest(long id, User fosterParent, User parent, Pet pet, Date requestDate, RequestStatus status,
+			Date startDate, Date endDate, String notes) {
 		super();
 		Id = id;
 		this.fosterParent = fosterParent;
+		this.parent = parent;
 		this.pet = pet;
 		this.requestDate = requestDate;
 		this.status = status;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.notes = notes;
+	}
+
+	public User getParent() {
+		return parent;
+	}
+
+	public void setParent(User parent) {
+		this.parent = parent;
 	}
 
 	public Pet getPet() {

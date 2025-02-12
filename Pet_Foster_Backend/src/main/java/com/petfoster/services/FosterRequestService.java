@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.petfoster.enums.util.RequestStatus;
 import com.petfoster.model.FosterRequest;
 import com.petfoster.model.Pet;
 import com.petfoster.model.User;
@@ -36,12 +37,32 @@ public class FosterRequestService {
     public FosterRequestDTO createFosterRequest(Long userId, Long petId, FosterRequestDTO fosterRequestDTO) {
     	
     	FosterRequest fosReq = modelMapper.map(fosterRequestDTO, FosterRequest.class);
-    	User user = userRepo.findById(userId).orElse(null);;
+    	User user = userRepo.findById(userId).orElse(null);
     	Pet pet = petRepo.findById(petId).orElseThrow();
-    	fosReq.setFosterParent(user);
+    	pet.setAvailableToFoster(true);
+    	pet.setFostered(false);
+    	fosReq.setParent(user);
     	fosReq.setPet(pet);
     	
         return modelMapper.map(fosterRequestRepository.save(fosReq), FosterRequestDTO.class);
+    }
+    
+    @Transactional
+    public void acceptFosterRequest(Long userId, Long petId)
+    {
+    	
+    	Pet pet = petRepo.findById(petId).orElseThrow();
+    	pet.setFostered(true);
+    	pet.setAvailableToFoster(false);
+    	
+    	User user = userRepo.findById(userId).orElse(null);
+    	
+    	FosterRequest fosReq = fosterRequestRepository.findByPetId(petId);
+    	fosReq.setPet(pet);
+    	fosReq.setFosterParent(user);
+    	fosReq.setStatus(RequestStatus.ACCEPTED);
+    	
+    	fosterRequestRepository.save(fosReq);
     }
 
     // Get all foster requests
@@ -52,9 +73,8 @@ public class FosterRequestService {
     }
 
     // Get a foster request by ID
-    public FosterRequestDTO getFosterRequestById(Long id) {
-        return modelMapper.map(fosterRequestRepository.findById(id),FosterRequestDTO.class);
-        
+    public FosterRequestDTO getFosterRequestByPetId(Long petId) {
+        return modelMapper.map(fosterRequestRepository.findByPetId(petId), FosterRequestDTO.class);
     }
 
     // Update a foster request
@@ -79,6 +99,8 @@ public class FosterRequestService {
     	fosterRequest.setFosterParent(fosterParent);
     	
     	Pet pet = petRepo.findById(fosterRequest.getPet().getId()).orElseThrow();
+    	
+    	
     	
     	if(fostDTO.getStatus().equals("ACCEPTED"))
     	pet.setFostered(true);

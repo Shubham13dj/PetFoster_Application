@@ -51,7 +51,8 @@ const FosterRequestPage = () => {
       endDate: endDate,
       notes: notes,
       userId: userAuth.id,
-      requestDate: date
+      requestDate: date,
+      status: "PENDING"
     };
 
     // console.log(fosterRequestDTO);

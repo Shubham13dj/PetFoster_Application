@@ -7,7 +7,7 @@ import Card from './Card';
 
 function UserDashboard() {
   const { userAuth, userAuth: { jsonToken }, setUserAuth } = useContext(UserContext);
-  
+
   const [pets, setPets] = useState([]);
   const navigate = useNavigate();
 
@@ -18,13 +18,14 @@ function UserDashboard() {
       navigate('/login');
     } else {
       // Fetch user details from the server
+      // axios.get(process.env.REACT_APP_SERVER_DOMAIN + userAuth.id, {
       axios.get(`http://localhost:9000/users/${userAuth.id}`, {
         headers: {
           "Authorization": `Bearer ${jsonToken}`
         }
       })
         .then(response => {
-          console.log('User Details:', response.data);
+          //console.log('User Details:', response.data);
         })
         .catch(error => {
           toast.error("Failed to fetch user details.");
@@ -37,7 +38,7 @@ function UserDashboard() {
         }
       })
         .then(response => {
-          setPets(Array.isArray(response.data) ? response.data : []);
+          setPets(Array.isArray(response.data) ? response.data: []);
         })
         .catch(error => {
           toast.error("Failed to fetch pets. Please try again.");
@@ -52,8 +53,8 @@ function UserDashboard() {
   };
 
   const handleDeletePet = (petId) => {
-    axios.delete(`http://localhost:9000/pets/${petId}`,{
-      headers:{ "Authorization":`Bearer ${ jsonToken }`}
+    axios.delete(`http://localhost:9000/pets/${petId}`, {
+      headers: { "Authorization": `Bearer ${jsonToken}` }
     })
       .then(() => {
         setPets(pets.filter((pet) => pet.id !== petId));
@@ -63,7 +64,7 @@ function UserDashboard() {
         toast.error("Failed to delete pet. Please try again.");
       });
   };
-
+  //const filteredPets = pets.filter((pet)=> pet.availableToFoster === true);
   return (
     <div className="container mt-5">
       <div className="user-details mt-4">
@@ -78,61 +79,67 @@ function UserDashboard() {
       {userAuth?.role === 'FOSTER_PARENT' ? (
         <div className="pets-section mt-4">
           <h2>Available Pets for Fostering</h2>
-          <Card pets={pets} />  {/* Pass pets to Card component */}
+          <Card role={userAuth?.role}/>  {/* Pass pets to Card component */}
         </div>
       ) : (
         <>
-        <div className="pets-section mt-4">
-          <h2>Your Pets</h2>
-          {pets.length === 0 ? (
-            <div>
-              <p>You have no pets. Add one below!</p>
-              <button className="btn btn-primary" onClick={() => navigate('/add-pet')}>
-                Add a Pet
-              </button>
-            </div>
-          ) : (
-          
-           
-            <div className="row">
-              {pets.map((pet) => (
-                <div key={pet.id} className="col-md-4">
-                  <div className="card">
-                    <img src={pet.imageUrl} alt={pet.name} className="card-img-top" />
-                    <div className="card-body">
-                      <h5 className="card-title">{pet.name}</h5>
-                      <p className="card-text">{pet.species}</p>
-                      <button 
-                        className="btn btn-warning" 
-                        onClick={() => navigate(`/edit-pet/${pet.id}`)} // Corrected path
-                      >
-                        Edit Pet
-                      </button>
-                      <button 
-                        className="btn btn-danger ms-2" 
-                        onClick={() => handleDeletePet(pet.id)}
-                      >
-                        Delete Pet
-                      </button>
-                      <button
-                        onClick={()=> navigate(`/foster_request/${pet.id}`)}
-                      >
-                        Request to foster
-                      </button>
+          <div className="pets-section mt-4">
+            <h2>Your Pets</h2>
+            {pets.length === 0 ? (
+              <div>
+                <p>You have no pets. Add one below!</p>
+                <button className="btn btn-primary" onClick={() => navigate('/add-pet')}>
+                  Add a Pet
+                </button>
+              </div>
+            ) : (
+
+
+              <div className="row">
+                {pets.map((pet) => (
+                  <div key={pet.id} className="col-md-4">
+                    <div className="card">
+                      {/* <img src={pet.imageUrl} alt={pet.name} className="card-img-top" /> */}
+                      <img
+                        src={`data:${pet.imageType};base64,${pet.imageData}`}
+                        alt={pet.name}
+                        className="card-img-top"
+                        style={{ width: '100%', height: 'auto' }}
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title">{pet.name}</h5>
+                        <p className="card-text">{pet.species}</p>
+                        <button
+                          className="btn btn-warning"
+                          onClick={() => navigate(`/edit-pet/${pet.id}`)} // Corrected path
+                        >
+                          Edit Pet
+                        </button>
+                        <button
+                          className="btn btn-danger ms-2"
+                          onClick={() => handleDeletePet(pet.id)}
+                        >
+                          Delete Pet
+                        </button>
+                        <button
+                          onClick={() => navigate(`/foster_request/${pet.id}`)}
+                        >
+                          Request to foster
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-        <button className="btn btn-primary" onClick={() => navigate('/add-pet')}>
-        Add a Pet
-      </button>
-       </>
+                ))}
+              </div>
+            )}
+          </div>
+          <button className="btn btn-primary" onClick={() => navigate('/add-pet')}>
+            Add a Pet
+          </button>
+        </>
       )}
 
-      
+
     </div>
   );
 }

@@ -32,17 +32,26 @@ public class FosterRequestController {
 		return ResponseEntity.ok(fosterRequestService.createFosterRequest(user_id, pet_id, fosterRequestDTO));
 	}
 	
+	@PutMapping("/{user_id}/{pet_id}")
+	public ResponseEntity<Void> acceptFosterRequest(@PathVariable Long user_id, @PathVariable Long pet_id)
+	{
+		fosterRequestService.acceptFosterRequest(user_id, pet_id);
+		return ResponseEntity.noContent().build();
+	}
+	
 	@GetMapping
 	public ResponseEntity<List<FosterRequestDTO>> getAllFosterRequests()
 	{
 		return ResponseEntity.ok(fosterRequestService.getAllFosterRequests());
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<FosterRequestDTO> getFosterRequestById(@PathVariable Long id)
+	@GetMapping("/pet/{id}")
+	public ResponseEntity<FosterRequestDTO> getFosterRequestByPetId(@PathVariable Long petId)
 	{
-		return ResponseEntity.ok(fosterRequestService.getFosterRequestById(id));
+		return ResponseEntity.ok(fosterRequestService.getFosterRequestByPetId(petId));
 	}
+	
+	
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<FosterRequestDTO> updateFosterRequest(@PathVariable Long id, @RequestBody FosterRequestDTO fosterRequestDTO)
