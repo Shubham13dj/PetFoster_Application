@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.petfoster.model.Pet;
 import com.petfoster.model.User;
+import com.petfoster.modelDTO.FosterRequestDTO;
 import com.petfoster.modelDTO.PetDTO;
 import com.petfoster.repository.PetRepository;
 import com.petfoster.repository.UserRepository;
@@ -85,10 +85,17 @@ public class PetService {
 		petRepository.save(pet);
 	}
 	
+	@Autowired
+	private FosterRequestService fosReqServ;
 	
 	@Transactional
 	public void deletePet(Long id)
 	{
+		FosterRequestDTO fosReqDto = fosReqServ.getFosterRequestByPetId(id);
+		
+		if(fosReqDto != null)
+		fosReqServ.deleteFosterRequest((fosReqDto.getId()));
+		
 		petRepository.deleteById(id);
 	}
 	

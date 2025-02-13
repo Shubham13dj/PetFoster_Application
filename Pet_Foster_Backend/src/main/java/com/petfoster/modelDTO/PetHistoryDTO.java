@@ -23,7 +23,6 @@ public class PetHistoryDTO {
 	
 	private PetDTO pet;
 	
-	private UserDTO adopter;
 	
 	private UserDTO fosterParent;
 	
@@ -51,13 +50,6 @@ public class PetHistoryDTO {
 		this.pet = pet;
 	}
 
-	public UserDTO getAdopter() {
-		return adopter;
-	}
-
-	public void setAdopter(UserDTO adopter) {
-		this.adopter = adopter;
-	}
 
 	public UserDTO getFosterParent() {
 		return fosterParent;

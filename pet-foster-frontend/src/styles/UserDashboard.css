@@ -1,0 +1,201 @@
+/* General container styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* User details section */
+  .user-details {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+
+ 
+  .user-details h3 {
+    color: blue;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  .user-details p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .user-details p strong {
+    color: #333;
+  }
+  /* Pets section */
+.pets-section {
+  margin-top: 40px;
+}
+
+.pets-section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Card Container */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Ensure even distribution of cards */
+  gap: 20px; /* Space between cards */
+  padding: 20px;
+  background-color: #f5f5f5;
+  box-sizing: border-box;
+}
+
+/* Style for each card */
+.card {
+  width: 18rem; /* Fixed width for card */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  flex-shrink: 0; /* Prevent card from shrinking */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+  padding: 10px;
+}
+
+/* Card Hover effect */
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Image Styles */
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover; /* Ensures the image fills the card while maintaining aspect ratio */
+}
+
+/* Card Body Styles */
+.card-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Title style */
+.card-title {
+  font-size: 1.25em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Text style for card body */
+.card-text {
+  font-size: 0.9em;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+/* Responsive Styles for smaller screens */
+@media (max-width: 768px) {
+  .card-container {
+    padding: 10px;
+    justify-content: center; /* Center cards on smaller screens */
+  }
+
+  .card {
+    width: 100%; /* Full width on smaller screens */
+    margin-bottom: 15px; /* Margin between cards in mobile view */
+  }
+
+  .pets-section h2 {
+    font-size: 1.5rem; /* Adjust heading size for mobile */
+  }
+}
+
+/* General Button Styling */
+button {
+  font-size: 1rem;
+  padding: 10px ;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+  margin-bottom: 10px;
+
+}
+
+.card-body button {
+  margin: 0; /* Reset margin for buttons inside card-body */
+  flex: 1 1 48%; /* Make buttons take 50% space with a little margin */
+  min-width: 130px; /* Ensure buttons don’t shrink too much */
+  margin-left: 0;
+}
+.edit-delete-btn {
+  display: flex;
+}
+/* Hover effect for buttons */
+button:hover {
+  transform: translateY(-2px);
+}
+
+/* Edit Pet Button (Warning) */
+.btn-warning {
+  background-color: #ff9800;
+  color: #fff;
+}
+
+.btn-warning:hover {
+  background-color: #f57c00;
+}
+
+/* Delete Pet Button (Danger) */
+.btn-danger {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: #d32f2f;
+}
+
+/* Add margin to separate buttons */
+.ms-2 {
+  margin-left: 10px;
+}
+
+/* Style for the 'Request to foster' button */
+button:last-child {
+  width: 100%; /* Make the 'Request to foster' button take up the full width */
+  margin-top: 10px; /* Space between the 'Request to foster' button and the previous buttons */
+}
+
+/* For aligning Edit and Delete buttons on one line */
+.card-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Space between buttons */
+}
+
+.card-body button {
+  margin: 0; /* Reset margin for buttons inside card-body */
+}
+

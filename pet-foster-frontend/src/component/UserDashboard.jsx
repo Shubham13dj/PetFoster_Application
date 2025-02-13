@@ -4,6 +4,7 @@ import { UserContext } from '../App';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import Card from './Card';
+// import '../styles/UserDashboard.css'
 
 function UserDashboard() {
   const { userAuth, userAuth: { jsonToken }, setUserAuth } = useContext(UserContext);
@@ -67,19 +68,31 @@ function UserDashboard() {
   //const filteredPets = pets.filter((pet)=> pet.availableToFoster === true);
   return (
     <div className="container mt-5">
+  
       <div className="user-details mt-4">
         <h3 style={{ color: 'blue' }}>User Name: {userAuth?.name}</h3>
         <p>Role: {userAuth?.role}</p>
         <p><strong>Email:</strong> {userAuth?.email}</p>
         <p><strong>Phone Number:</strong> {userAuth?.phoneNumber}</p>
         <p><strong>Gender:</strong> {userAuth?.gender}</p>
+        
+      {
+        userAuth.role !== "FOSTER_PARENT" ?
+      <button className="btn btn-primary" onClick={() => navigate('/add-pet')}>
+                  Add a Pet
+      </button>
+
+      :
+      <>
+      </>
+      }
       </div>
 
       {/* Display pets or cards based on role */}
       {userAuth?.role === 'FOSTER_PARENT' ? (
         <div className="pets-section mt-4">
           <h2>Available Pets for Fostering</h2>
-          <Card role={userAuth?.role}/>  {/* Pass pets to Card component */}
+          <Card role={userAuth.role} /> {/* Pass pets to Card component */}
         </div>
       ) : (
         <>
@@ -88,9 +101,7 @@ function UserDashboard() {
             {pets.length === 0 ? (
               <div>
                 <p>You have no pets. Add one below!</p>
-                <button className="btn btn-primary" onClick={() => navigate('/add-pet')}>
-                  Add a Pet
-                </button>
+                
               </div>
             ) : (
 
@@ -109,18 +120,21 @@ function UserDashboard() {
                       <div className="card-body">
                         <h5 className="card-title">{pet.name}</h5>
                         <p className="card-text">{pet.species}</p>
+                        <div className='edit-delete-btn'>
+
                         <button
                           className="btn btn-warning"
                           onClick={() => navigate(`/edit-pet/${pet.id}`)} // Corrected path
-                        >
+                          >
                           Edit Pet
                         </button>
                         <button
                           className="btn btn-danger ms-2"
                           onClick={() => handleDeletePet(pet.id)}
-                        >
+                          >
                           Delete Pet
                         </button>
+                          </div>
                         <button
                           onClick={() => navigate(`/foster_request/${pet.id}`)}
                         >
@@ -133,9 +147,7 @@ function UserDashboard() {
               </div>
             )}
           </div>
-          <button className="btn btn-primary" onClick={() => navigate('/add-pet')}>
-            Add a Pet
-          </button>
+        
         </>
       )}
 

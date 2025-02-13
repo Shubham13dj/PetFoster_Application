@@ -45,7 +45,7 @@ public class FosterRequestController {
 		return ResponseEntity.ok(fosterRequestService.getAllFosterRequests());
 	}
 	
-	@GetMapping("/pet/{id}")
+	@GetMapping("/pet/{petId}")
 	public ResponseEntity<FosterRequestDTO> getFosterRequestByPetId(@PathVariable Long petId)
 	{
 		return ResponseEntity.ok(fosterRequestService.getFosterRequestByPetId(petId));

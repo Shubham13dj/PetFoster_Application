@@ -1,0 +1,136 @@
+/* General Container Styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Card Styling */
+  .card {
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Card Body Styling */
+  .card-body {
+    padding: 20px;
+  }
+  
+  /* Title Styling */
+  .card-body h2 {
+    color: #2c3e50;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Group Styling */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Input Control Styling */
+  .form-control {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 1rem;
+  }
+  
+  .form-control:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+  }
+  
+  /* Invalid Input Styling */
+  .form-control.is-invalid {
+    border-color: #e74c3c;
+    background-color: #f8d7da;
+  }
+  
+  /* Feedback for Invalid Input */
+  .form-control-feedback {
+    font-size: 0.875rem;
+    color: #e74c3c;
+    margin-top: 5px;
+  }
+  
+  /* Checkbox Styling */
+  .form-check-label {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  /* Button Styling */
+  button {
+    font-size: 1rem;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+    margin-top: 20px;
+  }
+  
+  button:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Submit Button */
+  button[type="submit"] {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #218838;
+  }
+  
+  /* Clear Button */
+  button[type="button"] {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #c82333;
+  }
+  
+  /* Align buttons to the right */
+  .mt-4 .d-flex {
+    justify-content: flex-end;
+  }
+  
+  /* Alert Messages */
+  .alert {
+    margin-top: 10px;
+  }
+  
+  /* Responsive Styles for Smaller Screens */
+  @media (max-width: 768px) {
+    /* Form elements */
+    .form-control,
+    .form-check-label {
+      font-size: 1rem;
+    }
+  
+    /* Button styling */
+    button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    /* Card padding */
+    .card {
+      padding: 10px;
+    }
+  }
+  

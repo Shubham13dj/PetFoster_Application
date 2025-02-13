@@ -12,7 +12,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,10 +20,14 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "user")
+
 public class User {
 	@Id
 	@Column(name = "id")
@@ -47,16 +50,9 @@ public class User {
 
 	private Integer petCount;
 
-	public Long getVersion() {
-		return version;
-	}
-
-	public void setVersion(Long version) {
-		this.version = version;
-	}
 //
 	@JsonIgnore
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL,  orphanRemoval = true)
 	private Set<Pet> pets = new HashSet<>(); // A user can have many pets
 
 	// private String jsonToken;
@@ -66,120 +62,127 @@ public class User {
 
 	@Version
 	private Long version;
-
 	public User(long id, String name, String gender, String phoneNumber, String email, String password, UserRole role,
-			boolean isEnabled, Integer petCount, List<Pet> pets, String specialization, Long version) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.gender = gender;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
-		this.password = password;
-		this.role = role;
-		this.isEnabled = isEnabled;
-		this.petCount = petCount;
-		//this.pets = pets;
-		this.specialization = specialization;
-		this.version = version;
+	        boolean isEnabled, Integer petCount, String specialization, Long version) {
+	    super();
+	    this.id = id;
+	    this.name = name;
+	    this.gender = gender;
+	    this.phoneNumber = phoneNumber;
+	    this.email = email;
+	    this.password = password;
+	    this.role = role;
+	    this.isEnabled = isEnabled;
+	    this.petCount = petCount;
+//	    this.pets = pets;
+	    this.specialization = specialization;
+	    this.version = version;
+	}
+
+	public Long getVersion() {
+	    return version;
+	}
+
+	public void setVersion(Long version) {
+	    this.version = version;
 	}
 
 	public User() {
-		super();
+	    super();
 	}
 
 	public long getId() {
-		return id;
+	    return id;
 	}
 
 	public void setId(long id) {
-		this.id = id;
+	    this.id = id;
 	}
 
 	public String getGender() {
-		return gender;
+	    return gender;
 	}
 
 	public void setGender(String gender) {
-		this.gender = gender;
+	    this.gender = gender;
 	}
 
 	public String getPhoneNumber() {
-		return phoneNumber;
+	    return phoneNumber;
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	    this.phoneNumber = phoneNumber;
 	}
 
 	public String getEmail() {
-		return email;
+	    return email;
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+	    this.email = email;
 	}
 
 	public String getPassword() {
-		return password;
+	    return password;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+	    this.password = password;
 	}
 
 	public boolean isEnabled() {
-		return isEnabled;
+	    return isEnabled;
 	}
 
 	public void setEnabled(boolean isEnabled) {
-		this.isEnabled = isEnabled;
+	    this.isEnabled = isEnabled;
 	}
 
 	public String getName() {
-		return name;
+	    return name;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+	    this.name = name;
 	}
 
 	public UserRole getRole() {
-		return role;
+	    return role;
 	}
 
 	public void setRole(UserRole role) {
-		this.role = role;
+	    this.role = role;
 	}
 
 	public Integer getPetCount() {
-		return petCount;
+	    return petCount;
 	}
 
 	public void setPetCount(Integer petCount) {
-		this.petCount = petCount;
+	    this.petCount = petCount;
 	}
 
 	public String getSpecialization() {
-		return specialization;
+	    return specialization;
 	}
 
 	public void setSpecialization(String specialization) {
-		this.specialization = specialization;
+	    this.specialization = specialization;
 	}
-//
+
 //	public List<Pet> getPets() {
-//		return pets;
+//	    return pets;
 //	}
 //
 //	public void setPets(List<Pet> pets) {
-//		this.pets = pets;
+//	    this.pets = pets;
 //	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", Name=" + name + ", gender=" + gender + ", phoneNumber=" + phoneNumber + ", email="
-				+ email + ", password=" + password + ", isEnabled=" + isEnabled + "]";
+	    return "User [id=" + id + ", Name=" + name + ", gender=" + gender + ", phoneNumber=" + phoneNumber + ", email="
+	            + email + ", password=" + password + ", isEnabled=" + isEnabled + "]";
 	}
 
 }

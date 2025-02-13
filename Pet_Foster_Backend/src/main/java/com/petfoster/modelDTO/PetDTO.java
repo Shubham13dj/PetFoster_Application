@@ -24,6 +24,26 @@ public class PetDTO {
 	private String description;
     
 	private Long userId;
+	
+	private boolean availableToAdopt;
+	private boolean availableToFoster;
+	
+	public boolean isAvailableToAdopt() {
+		return availableToAdopt;
+	}
+
+	public void setAvailableToAdopt(boolean availableToAdopt) {
+		this.availableToAdopt = availableToAdopt;
+	}
+
+	public boolean isAvailableToFoster() {
+		return availableToFoster;
+	}
+
+	public void setAvailableToFoster(boolean availableToFoster) {
+		this.availableToFoster = availableToFoster;
+	}
+
 	public Long getUserId() {
 		return userId;
 	}

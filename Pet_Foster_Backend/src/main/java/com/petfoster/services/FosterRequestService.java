@@ -74,14 +74,19 @@ public class FosterRequestService {
 
     // Get a foster request by ID
     public FosterRequestDTO getFosterRequestByPetId(Long petId) {
-        return modelMapper.map(fosterRequestRepository.findByPetId(petId), FosterRequestDTO.class);
+    	FosterRequest fosterRequest=fosterRequestRepository.findByPetId(petId);
+    	
+    	if(fosterRequest != null)
+        return modelMapper.map(fosterRequest, FosterRequestDTO.class);
+    	
+    	return null;
     }
 
     // Update a foster request
     @Transactional
     public FosterRequestDTO updateFosterRequest(Long id, FosterRequestDTO updatedRequestDTO) {
         if (fosterRequestRepository.existsById(id)) {
-            updatedRequestDTO.setId(id);
+//            updatedRequestDTO.setId(id);
             return modelMapper.map(fosterRequestRepository.save(modelMapper.map(updatedRequestDTO, FosterRequest.class)), FosterRequestDTO.class);
         }
         return null;  // Or throw an exception

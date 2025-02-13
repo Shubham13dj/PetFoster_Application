@@ -20,8 +20,8 @@ public class Pet {
 	private String species;
 	private String breed;
 	private String healthStatus;
-	private boolean availableToAdopt;
 	private boolean adopted;
+	private boolean availableToAdopt;
 	private boolean availableToFoster;
 	private boolean fostered;
 
@@ -76,7 +76,7 @@ public class Pet {
 
 	private String description;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 

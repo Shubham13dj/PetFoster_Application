@@ -32,11 +32,7 @@ public class PetHistory {
 	@ManyToOne
 	@JoinColumn(name="pet_id")
 	private Pet pet;
-	
-	@ManyToOne
-	@JoinColumn(name="adopter_id")
-	private User adopter;
-	
+
 	@ManyToOne
 	@JoinColumn(name="foster_parent_id")
 	private User fosterParent;
@@ -44,14 +40,6 @@ public class PetHistory {
 	private Date fosterStartDate;
 	private Date fosterEndDate;
 	
-	@ManyToOne
-	@JoinColumn(name="shelter_id")
-	private Shelter shelter;
-	
-	@ManyToOne
-	@JoinColumn(name="medical_record_id")
-	private MedicalRecords medicalRecord;
-
 	public Long getHistoryId() {
 		return historyId;
 	}

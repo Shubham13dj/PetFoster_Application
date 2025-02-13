@@ -3,6 +3,7 @@ import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap'
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { UserContext } from '../App';
+// import '../styles/AddPetDetailsPage.css'
 
 const AddPetDetailsPage = () => {
   const [petName, setPetName] = useState('');
