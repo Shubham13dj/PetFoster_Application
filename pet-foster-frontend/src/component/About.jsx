@@ -19,7 +19,7 @@ const About = () => {
             Our mission is to create a network where pets and people find each other through the power of foster care.
             We ensure every pet receives love, care, and attention while waiting for adoption.
           </p>
-          <button className="btn btn-primary mt-3">Learn More</button>
+         
         </div>
       </div>
 

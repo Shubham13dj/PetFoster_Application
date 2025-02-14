@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBarsStaggered, FaBlog, FaXmark } from 'react-icons/fa6';
-import  {AuthContext}  from '../context/Authprovider';
+import { FaBarsStaggered, FaBlog } from 'react-icons/fa6';
+import { AuthContext } from '../context/Authprovider';
 import { UserContext } from '../App';
 
 function Navbar() {
   const [isSticky, setSticky] = useState(false);
-  const {  user } = useContext(AuthContext);
-  
-  let { userAuth: { jsonToken }, setUserAuth } = useContext(UserContext)
-  
+  const { user } = useContext(AuthContext);
+  let { userAuth: { jsonToken }, setUserAuth } = useContext(UserContext);
+
   useEffect(() => {
     const handleScroll = () => {
       setSticky(window.scrollY > 100);
@@ -22,24 +21,24 @@ function Navbar() {
   }, []);
 
   // Navigation items
-  const navItems = 
-  jsonToken ?
-  [
-    { link: 'Home', path: '/' },
-    { link: 'About', path: '/about' },
-    { link: 'Logout', path: '/logout' },
-    { link: 'Dashboard', path: '/dashboard' }
-  ]
-    :
-  [ 
-    { link: 'Home', path: '/' },
-    { link: 'About', path: '/about' },
-    { link: 'Sign Up', path: '/signup' },
-    { link: 'Login', path: '/login' }
-  ];
+  const navItems = jsonToken
+    ? [
+        { link: 'Home', path: '/' },
+        { link: 'About', path: '/about' },
+        { link: 'Dashboard', path: '/dashboard' },
+        { link: 'Logout', path: '/logout' },
+      ]
+    : [
+        { link: 'Home', path: '/' },
+        { link: 'About', path: '/about' },
+        { link: 'Sign Up', path: '/signup' },
+        { link: 'Login', path: '/login' },
+      ];
 
   return (
-    <nav className={`navbar navbar-expand-lg ${isSticky ? 'bg-primary' : 'bg-dark'} fixed-top `}>
+    <nav
+      className={`navbar navbar-expand-lg ${isSticky ? 'bg-primary' : 'bg-dark'} fixed-top`}
+    >
       <div className="container">
         {/* Brand Logo */}
         <Link to="/" className="navbar-brand text-primary fw-bold">
@@ -52,6 +51,9 @@ function Navbar() {
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <FaBarsStaggered />
         </button>
@@ -68,13 +70,9 @@ function Navbar() {
             ))}
           </ul>
 
-          {/*  user Info (Only visible when logged in) */}
+          {/* User Info (Only visible when logged in) */}
           <div className="d-flex align-items-center ms-3">
-            { user ? (
-              <span className="text-dark fw-bold">{ user.email}</span>
-            ) : (
-              ''
-            )}
+            {user ? <span className="text-dark fw-bold">{user.email}</span> : ''}
           </div>
         </div>
       </div>

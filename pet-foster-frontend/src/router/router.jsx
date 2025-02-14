@@ -16,7 +16,8 @@ import Logout from "../component/Logout";
 import UserDashboard from "../component/UserDashboard";
 import AddPetDetailsPage from "../component/AddPetDetailsPage";
 import FosterRequestPage from "../component/FosterRequestPage";
-import Petdetails from "../component/PetDetailsPage"
+import Petdetails from "../component/PetDetailsPage";
+import EditPetDetails from "../component/EditPetDetails";
 
   const router = createBrowserRouter([
     {
@@ -73,6 +74,10 @@ import Petdetails from "../component/PetDetailsPage"
               },{
                 path: "/contact-us",  
                 element: <ContactUs /> 
+              },
+              {
+                path: "/edit-pet/:id",
+                element: <EditPetDetails />
               }
         ]
     }

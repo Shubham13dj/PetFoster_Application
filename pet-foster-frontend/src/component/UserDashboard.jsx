@@ -136,6 +136,7 @@ function UserDashboard() {
                         </button>
                           </div>
                         <button
+                          className='btn btn-secondary'
                           onClick={() => navigate(`/foster_request/${pet.id}`)}
                         >
                           Request to foster

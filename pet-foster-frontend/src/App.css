@@ -13,9 +13,15 @@ html, body {
   min-height: 100vh;
 }
 
+.app-content > .inner-content {
+  height: 100%; /* Ensures inner content stretches to fill the app-content */
+}
+
 /* The content will take all available space and leave room for footer */
 .app-content {
   flex-grow: 1;  /* Takes available space */
+  height: 100%;
+  overflow: auto;
 }
 
 /* Styling for content (the main body area) */

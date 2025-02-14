@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/Homepage.css";
 import Card from './Card'
 import img1 from "../imgs/img1.jpg";
 import img2 from "../imgs/img2.jpg";
 import img3 from "../imgs/img3.jpg";
 import img4 from "../imgs/img4.jpg";
-import { UserContext } from "../App";
-import axios from "axios";
 
 const images = [img1, img2, img3, img4];
 const texts = [
@@ -29,9 +27,8 @@ const texts = [
 ];
 
 function Homepage() {
-
   const [currentIndex, setCurrentIndex] = useState(0);
- 
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -44,9 +41,7 @@ function Homepage() {
   };
 
   const handlePrev = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
-    );
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
 
   return (
@@ -67,13 +62,11 @@ function Homepage() {
         </button>
       </div>
 
-      <div>
-        <Card role={"HOME"}/>
+      <div className="cards-section">
+        <h2 className="cards-section-title">Foster a Pet Today!</h2>
+        <Card role={"HOME"} />
       </div>
-
-      
     </div>
   );
 }
-
-export default Homepage;
+export default Homepage;
