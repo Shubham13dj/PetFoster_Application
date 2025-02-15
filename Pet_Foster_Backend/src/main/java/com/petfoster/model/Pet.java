@@ -25,6 +25,46 @@ public class Pet {
 	private boolean availableToFoster;
 	private boolean fostered;
 
+	private String location;
+	
+	private String imageName;
+	
+	private String imageType;
+
+	@Lob
+	private byte[] imageData;
+
+	private String description;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	private User user;
+
+	@Version
+	private Long version;
+	
+//	
+	public Pet() {
+		
+	}
+	
+	public Pet(Long id, String name, Integer age, String species, String breed, String healthStatus, boolean adopted,
+			boolean fostered, String location, String photoName, String description, User user, Long version) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.species = species;
+		this.breed = breed;
+		this.healthStatus = healthStatus;
+		this.adopted = adopted;
+		this.fostered = fostered;
+		this.location = location;
+		this.description = description;
+		this.user = user;
+		this.version = version;
+	}
+	
 	public boolean isAvailableToAdopt() {
 		return availableToAdopt;
 	}
@@ -41,9 +81,6 @@ public class Pet {
 		this.availableToFoster = availableToFoster;
 	}
 
-	private String location;
-
-	private String imageName;
 
 	public String getImageName() {
 		return imageName;
@@ -69,17 +106,7 @@ public class Pet {
 		this.imageData = imageData;
 	}
 
-	private String imageType;
-
-	@Lob
-	private byte[] imageData;
-
-	private String description;
-
-	@ManyToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "id")
-	private User user;
-
+	
 	public User getUser() {
 		return user;
 	}
@@ -88,13 +115,6 @@ public class Pet {
 		this.user = user;
 	}
 
-	@Version
-	private Long version;
-
-//	
-	public Pet() {
-
-	}
 
 	public Integer getAge() {
 		return age;
@@ -144,23 +164,6 @@ public class Pet {
 		this.location = location;
 	}
 
-	public Pet(Long id, String name, Integer age, String species, String breed, String healthStatus, boolean adopted,
-			boolean fostered, String location, String photoName, String description, User user, Long version) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.age = age;
-		this.species = species;
-		this.breed = breed;
-		this.healthStatus = healthStatus;
-		this.adopted = adopted;
-		this.fostered = fostered;
-		this.location = location;
-
-		this.description = description;
-		this.user = user;
-		this.version = version;
-	}
 
 	public Long getVersion() {
 		return version;

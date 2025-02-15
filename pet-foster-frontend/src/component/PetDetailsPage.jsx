@@ -8,7 +8,9 @@ import { UserContext } from '../App';
 const PetDetailsPage = () => {
   const navigate = useNavigate();
   const { userAuth, userAuth: { jsonToken } } = useContext(UserContext);
+  
   const petId = useParams().id;
+
   const [pet, setPet] = useState(null);
   const [adoptionHistory, setAdoptionHistory] = useState([]);
   const [medicalHistory, setMedicalHistory] = useState([]);
@@ -21,6 +23,8 @@ const PetDetailsPage = () => {
     axios.get(`http://localhost:9000/pets/${petId}`)
       .then((response) => {
         setPet(response.data);
+        console.log("----------------------------------");
+        console.log(response.data);
       })
       .catch((error) => {
         console.error('Error fetching pet details:', error);
@@ -57,7 +61,7 @@ const PetDetailsPage = () => {
     })
       .then((response) => {
         setFosterRequest(response.data);
-          console.log(fosterRequest)
+          console.log(response.data)
       })
       .catch((error) => {
         console.error('Error fetching foster request details:', error);
@@ -67,7 +71,7 @@ const PetDetailsPage = () => {
 
   const handleAdopt = () => {
     if (jsonToken) {
-      console.log("Proceed with fostering process");
+      navigate(`/adopt-pet/${pet.id}`)
     } else {
       navigate("/login");
     }
@@ -177,7 +181,7 @@ const PetDetailsPage = () => {
             <tbody>
                 <tr>
                   <td>{fosterRequest.id}</td>
-                  <td>{fosterRequest.pet.userId}</td>
+                  <td>{fosterRequest.pet.id}</td>
                   <td>{new Date(fosterRequest.startDate).toLocaleDateString()}</td>
                   <td>{new Date(fosterRequest.endDate).toLocaleDateString()}</td>
                 </tr>

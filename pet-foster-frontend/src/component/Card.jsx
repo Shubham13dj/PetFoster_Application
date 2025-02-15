@@ -40,12 +40,14 @@ import { useNavigate } from 'react-router-dom';
   const handleAdoptToday = () => {
     // Add your handle logic here
   }
-  let filteredPets = pets;
-  if(role === "FOSTER_PARENT")
+
+  let filteredPets = "";
+  if(role !== "FOSTER_PARENT")
   {
-    
-    filteredPets = pets.filter(pet=> pet.availableToFoster === true || pet.availableToAdopt === true);
-  }
+  filteredPets = pets;
+}
+  filteredPets = pets.filter(pet=> pet.availableToFoster === true || pet.availableToAdopt === true);
+
 
 
  // pets = pets.filter((pet) => !pet.fostered || !pet.adopted);

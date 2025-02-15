@@ -35,6 +35,25 @@ public class UserDTO {
 
 //	@Version
 //	private Long version;
+	public UserDTO(long id, String name, String gender, String phoneNumber, String email, String password,
+			String role, boolean isEnabled, Integer petCount, String jsonToken, String specialization) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.gender = gender;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		this.password = password;
+		this.role = UserRole.valueOf(role.toUpperCase());
+		this.isEnabled = isEnabled;
+		this.petCount = petCount;
+		this.jsonToken = jsonToken;
+		this.specialization = specialization;
+	}
+	public UserDTO() {
+		super();
+	}
+	
 	
 	public String getJsonToken() {
 		return jsonToken;
@@ -106,25 +125,7 @@ public class UserDTO {
 		this.isEnabled = isEnabled;
 	}
 	
-	public UserDTO(long id, String name, String gender, String phoneNumber, String email, String password,
-			String role, boolean isEnabled, Integer petCount, String jsonToken, String specialization) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.gender = gender;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
-		this.password = password;
-		this.role = UserRole.valueOf(role.toUpperCase());
-		this.isEnabled = isEnabled;
-		this.petCount = petCount;
-		this.jsonToken = jsonToken;
-		this.specialization = specialization;
-	}
-	public UserDTO() {
-		super();
-	}
-	
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", Name=" + name + ", gender=" + gender

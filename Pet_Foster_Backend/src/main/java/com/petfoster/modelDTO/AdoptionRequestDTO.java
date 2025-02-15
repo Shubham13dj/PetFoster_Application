@@ -4,11 +4,6 @@ import java.util.Date;
 
 import com.petfoster.enums.util.RequestStatus;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,12 +33,81 @@ public class AdoptionRequestDTO {
 	 */
 	
 	
-	private Long adptionRequestId;
+	private Long id;
 	
-	private UserDTO adopter;
+	private Long adopter;
 	
 	private Date requestDate;
 	
 	private RequestStatus status;
+	
+	private Long pet;
+	
+	
+
+	public AdoptionRequestDTO() {
+		super();
+	}
+
+
+	public AdoptionRequestDTO(Long id, Long adopter, Date requestDate, RequestStatus status, Long pet) {
+		super();
+		this.id = id;
+		this.adopter = adopter;
+		this.requestDate = requestDate;
+		this.status = status;
+		this.pet = pet;
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	
+
+	public Date getRequestDate() {
+		return requestDate;
+	}
+
+	public void setRequestDate(Date requestDate) {
+		this.requestDate = requestDate;
+	}
+
+	public RequestStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(RequestStatus status) {
+		this.status = status;
+	}
+
+
+	public Long getAdopter() {
+		return adopter;
+	}
+
+
+	public void setAdopter(Long adopter) {
+		this.adopter = adopter;
+	}
+
+
+	public Long getPet() {
+		return pet;
+	}
+
+
+	public void setPet(Long pet) {
+		this.pet = pet;
+	}
+
+	
+	
+	
 	
 }

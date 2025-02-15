@@ -18,6 +18,7 @@ import AddPetDetailsPage from "../component/AddPetDetailsPage";
 import FosterRequestPage from "../component/FosterRequestPage";
 import Petdetails from "../component/PetDetailsPage";
 import EditPetDetails from "../component/EditPetDetails";
+import PetAdoptionPage from "../component/PetAdoptionForm";
 
   const router = createBrowserRouter([
     {
@@ -78,6 +79,10 @@ import EditPetDetails from "../component/EditPetDetails";
               {
                 path: "/edit-pet/:id",
                 element: <EditPetDetails />
+              },
+              {
+                path: "/adopt-pet/:id",
+                element: <PetAdoptionPage />
               }
         ]
     }

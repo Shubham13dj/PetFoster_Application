@@ -1,5 +1,7 @@
 package com.petfoster.modelDTO;
 
+import com.petfoster.model.User;
+
 import jakarta.persistence.Lob;
 
 public class PetDTO {
@@ -23,7 +25,7 @@ public class PetDTO {
 	
 	private String description;
     
-	private Long userId;
+	private User user;
 	
 	private boolean availableToAdopt;
 	private boolean availableToFoster;
@@ -44,28 +46,39 @@ public class PetDTO {
 		this.availableToFoster = availableToFoster;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public PetDTO() {
 		
 	}
 	
-	public PetDTO(Long id, String name, String breed, String description) {
+	public PetDTO(Long id, String name, Integer age, String species, String breed, String healthStatus, boolean adopted,
+			boolean fostered, String location, String imageName, String imageType, byte[] imageData, String description,
+			User user, boolean availableToAdopt, boolean availableToFoster) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.age = age;
+		this.species = species;
 		this.breed = breed;
+		this.healthStatus = healthStatus;
+		this.adopted = adopted;
+		this.fostered = fostered;
+		this.location = location;
+		this.imageName = imageName;
+		this.imageType = imageType;
+		this.imageData = imageData;
 		this.description = description;
-	
+		this.user = user;
+		this.availableToAdopt = availableToAdopt;
+		this.availableToFoster = availableToFoster;
 	}
-
-
 
 	public Integer getAge() {
 		return age;

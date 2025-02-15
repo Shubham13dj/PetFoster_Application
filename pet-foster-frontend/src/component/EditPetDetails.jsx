@@ -6,8 +6,12 @@ import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap'
 
 const PetDetails = () => {
     const navigate = useNavigate();
+    
+    
     const Id = useParams();
     const petId = Id.id;
+
+
     const [pet, setPet] = useState();
     const [petAge, setPetAge] = useState('');
     const [healthStatus, setHealthStatus] = useState('');
