@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,7 +33,7 @@ public class PetService {
 	
 	
 
-	
+	@Cacheable("pets")
 	public List<PetDTO> getAllPets()
 	{
 		List<Pet> pets = petRepository.findAll();
@@ -43,6 +44,7 @@ public class PetService {
 				.collect(Collectors.toList());
 	}
 	
+	@Cacheable("pet")
 	public PetDTO getPetById(Long id)
 	{
 		Pet pet = petRepository.findById(id).orElseThrow(()-> new RuntimeException("Pet not found"));
@@ -120,6 +122,7 @@ public class PetService {
 		return modelMapper.map(petRepository.findByLocation(location), PetDTO.class);
 	}
 	
+	@Cacheable("users_pets")
 	public List<PetDTO> getPetByUserId(Long userId)
 	{
 		 List<Pet> pets = petRepository.findByUserId(userId);

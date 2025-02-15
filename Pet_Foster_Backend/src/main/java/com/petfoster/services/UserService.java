@@ -2,6 +2,7 @@ package com.petfoster.services;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.petfoster.model.User;
@@ -40,6 +41,9 @@ public class UserService {
 	public UserDTO signup(UserDTO userDTO)
 	{
 		User user = modelMapper.map(userDTO, User.class);
+		if(userRepository.findUserByEmail(user.getEmail()) != null)
+			throw new RuntimeException("Username already registerd please login ");
+		
 		user.setPassword(PasswordUtils.hashPassword(user.getPassword()));
 		return modelMapper.map(userRepository.save(user), UserDTO.class);
 	}
@@ -75,6 +79,7 @@ public class UserService {
 	
 	}
 	
+	@Cacheable("user")
 	public UserDTO getUserDetails(Long userId)
 	{
 		User user = userRepository.findById(userId).orElseThrow(()->new RuntimeException("User not found"));
