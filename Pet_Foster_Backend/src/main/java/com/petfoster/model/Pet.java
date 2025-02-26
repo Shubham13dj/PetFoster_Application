@@ -1,3 +1,6 @@
+/**
+ * Provides the entity classes for the Pet Foster system.
+ */
 package com.petfoster.model;
 
 import jakarta.persistence.CascadeType;
@@ -9,7 +12,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Version;
-
+/**
+ * Represents a pet in the Pet Foster system.
+ */
 @Entity
 public class Pet {
 	@Id
@@ -47,7 +52,23 @@ public class Pet {
 	public Pet() {
 		
 	}
-	
+	 /**
+     * Constructs a new Pet with specified details.
+     * 
+     * @param id the pet ID
+     * @param name the name of the pet
+     * @param age the age of the pet
+     * @param species the species of the pet
+     * @param breed the breed of the pet
+     * @param healthStatus the health status of the pet
+     * @param adopted whether the pet is adopted
+     * @param fostered whether the pet is fostered
+     * @param location the location of the pet
+     * @param imageName the name of the pet's image
+     * @param description the description of the pet
+     * @param user the user associated with the pet
+     * @param version the version of the entity
+     */
 	public Pet(Long id, String name, Integer age, String species, String breed, String healthStatus, boolean adopted,
 			boolean fostered, String location, String photoName, String description, User user, Long version) {
 		super();

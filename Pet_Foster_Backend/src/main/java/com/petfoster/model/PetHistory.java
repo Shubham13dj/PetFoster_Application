@@ -1,3 +1,6 @@
+/**
+ * Provides the entity classes for the Pet Foster system.
+ */
 package com.petfoster.model;
 
 import java.util.Date;
@@ -14,17 +17,34 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+/**
+ * Lombok annotation to generate getters for all fields.
+ */
 @Getter
+
+/**
+ * Lombok annotation to generate setters for all fields.
+ */
 @Setter
+/**
+ * Lombok annotation to generate a no-args constructor.
+ */
 @NoArgsConstructor
+
+/**
+ * Lombok annotation to generate an all-args constructor.
+ */
 @AllArgsConstructor
+/**
+ * JPA annotation to indicate that this class is a JPA entity.
+ */
 @Entity
 public class PetHistory {
 	
-	/*
-	 * pet_id, foster_start_date, foster_end_date, shelter_id, foster_parent_id, medical_history, notes
-	 */
+	/**
+     * Fields:
+     * pet_id, foster_start_date, foster_end_date, shelter_id, foster_parent_id, medical_history, notes
+     */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long historyId;

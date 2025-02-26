@@ -16,7 +16,9 @@ import com.petfoster.repository.PetRepository;
 import com.petfoster.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
-
+/**
+ * Service class for managing foster requests and their related operations.
+ */
 @Service
 public class FosterRequestService {
 
@@ -32,7 +34,14 @@ public class FosterRequestService {
     @Autowired
     private PetRepository petRepo;
     
-    // Create a new foster request
+    /**
+     * Creates a new foster request.
+     * 
+     * @param userId the user ID of the foster parent
+     * @param petId the pet ID
+     * @param fosterRequestDTO the foster request data transfer object containing request details
+     * @return the created foster request's data transfer object
+     */
     @Transactional
     public FosterRequestDTO createFosterRequest(Long userId, Long petId, FosterRequestDTO fosterRequestDTO) {
     	
@@ -46,7 +55,12 @@ public class FosterRequestService {
     	
         return modelMapper.map(fosterRequestRepository.save(fosReq), FosterRequestDTO.class);
     }
-    
+    /**
+     * Accepts a foster request, updating the pet's status and assigning the foster parent.
+     * 
+     * @param userId the user ID of the foster parent
+     * @param petId the pet ID
+     */
     @Transactional
     public void acceptFosterRequest(Long userId, Long petId)
     {
@@ -64,15 +78,22 @@ public class FosterRequestService {
     	
     	fosterRequestRepository.save(fosReq);
     }
-
-    // Get all foster requests
+    /**
+     * Retrieves a list of all foster requests.
+     * 
+     * @return a list of FosterRequestDTO objects representing all foster requests
+     */
     public List<FosterRequestDTO> getAllFosterRequests() {
         return fosterRequestRepository.findAll().stream()
         		.map(fostReq -> modelMapper.map(fostReq, FosterRequestDTO.class))
         		.toList();
     }
-
-    // Get a foster request by ID
+    /**
+     * Retrieves a foster request by the pet ID.
+     * 
+     * @param petId the pet ID
+     * @return a FosterRequestDTO object representing the foster request
+     */
     public FosterRequestDTO getFosterRequestByPetId(Long petId) {
     	FosterRequest fosterRequest=fosterRequestRepository.findByPetId(petId);
     	
@@ -81,8 +102,13 @@ public class FosterRequestService {
     	
     	return null;
     }
-
-    // Update a foster request
+    /**
+     * Updates an existing foster request.
+     * 
+     * @param id the foster request ID
+     * @param updatedRequestDTO the updated foster request data transfer object
+     * @return the updated foster request's data transfer object
+     */
     @Transactional
     public FosterRequestDTO updateFosterRequest(Long id, FosterRequestDTO updatedRequestDTO) {
         if (fosterRequestRepository.existsById(id)) {
@@ -91,7 +117,14 @@ public class FosterRequestService {
         }
         return null;  // Or throw an exception
     }
-
+    /**
+     * Changes the status of a foster request based on the provided ID and FosterRequestDTO.
+     * Updates the status, assigns a foster parent, and sets the fostered status of the pet.
+     *
+     * @param id the ID of the foster request to be updated
+     * @param fostDTO the data transfer object containing the new status of the foster request
+     * @throws NoSuchElementException if the foster request, user, or pet is not found
+     */
     @Transactional
     public void changeStatusOfRequest(Long id, FosterRequestDTO fostDTO)
     {	
@@ -114,8 +147,12 @@ public class FosterRequestService {
     		pet.setFostered(false);
     	
     }
-    
-    // Delete a foster request
+    /**
+     * Deletes a foster request based on the provided ID.
+     *
+     * @param id the ID of the foster request to be deleted
+     * @throws EmptyResultDataAccessException if the foster request is not found
+     */
     @Transactional
     public void deleteFosterRequest(Long id) {
         fosterRequestRepository.deleteById(id);

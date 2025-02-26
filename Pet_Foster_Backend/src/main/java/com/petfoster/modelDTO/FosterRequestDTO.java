@@ -1,44 +1,64 @@
+/**
+ * FosterRequestDTO is a Data Transfer Object (DTO) handling requests for fostering pets.
+ * This class includes information about the request such as the foster parent, the pet, 
+ * request date, status, start date, end date, and any additional notes.
+ * 
+ * <p>
+ *     Handles requests for fostering pets.
+ * </p>
+ * 
+ * @package com.petfoster.modelDTO
+ * 
+ * @version 1.0
+ * 
+ * @author Team
+ * 
+ */
 package com.petfoster.modelDTO;
 
 import java.util.Date;
 
 import com.petfoster.enums.util.RequestStatus;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 /*
  * Handles requests for fostering pets.
  */
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class FosterRequestDTO {
-
-	/*
-	 * request_id, user_id (foster parent), pet_id, request_date, status (pending, accepted, rejected), start_date, end_date, notes
-	 */
-	
-
-	private long Id;
-	
-
-	private UserDTO fosterParent;
-	
-	private PetDTO pet;
-	
-	private Date requestDate;
-	
-	private RequestStatus status;
-	
-	private Date startDate;
-	
-	private Date endDate;
-	
+    /**
+     * The unique identifier for the request
+     */
+    private long Id;
+    
+    /**
+     * The User Data Transfer Object representing the foster parent
+     */
+    private UserDTO fosterParent;
+    
+    /**
+     * The Pet Data Transfer Object
+     */
+    private PetDTO pet;
+    
+    /**
+     * The date the foster request was made
+     */
+    private Date requestDate;
+    
+    /**
+     * The status of the request (pending, accepted, rejected)
+     */
+    private RequestStatus status;
+    
+    /**
+     * The start date for fostering
+     */
+    private Date startDate;
+    
+    /**
+     * The end date for fostering
+     */
+    private Date endDate;
 	private String notes;
 
 	public long getId() {

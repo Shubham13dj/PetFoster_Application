@@ -1,33 +1,7 @@
 package com.petfoster.modelDTO;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class ShelterDTO {
-	/*
-	 * shelter_id, name, location, capacity, contact_info, available_pets_count
-	 */
-
-	/*
-	 *	Add and update shelter details
-	List pets in the shelter
-	Assign pets to foster homes
- 
-	 */
-	
-
-	private Long shelterId;
+private Long shelterId;
 	
 	private String name;
 	
@@ -38,6 +12,26 @@ public class ShelterDTO {
 	private String contactInfo;
 	
 	private Integer availablePetsCount;
+	
+	private Long ownerId;
+	
+	
+
+	public ShelterDTO() {
+		super();
+	}
+
+	public ShelterDTO(Long shelterId, String name, String location, Integer capacity, String contactInfo,
+			Integer availablePetsCount, Long ownerId) {
+		super();
+		this.shelterId = shelterId;
+		this.name = name;
+		this.location = location;
+		this.capacity = capacity;
+		this.contactInfo = contactInfo;
+		this.availablePetsCount = availablePetsCount;
+		this.ownerId = ownerId;
+	}
 
 	public Long getShelterId() {
 		return shelterId;
@@ -85,6 +79,14 @@ public class ShelterDTO {
 
 	public void setAvailablePetsCount(Integer availablePetsCount) {
 		this.availablePetsCount = availablePetsCount;
+	}
+
+	public Long getOwnerId() {
+		return ownerId;
+	}
+
+	public void setOwnerId(Long ownerId) {
+		this.ownerId = ownerId;
 	}
 	
 	

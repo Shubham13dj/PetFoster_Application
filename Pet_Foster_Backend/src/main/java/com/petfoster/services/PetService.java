@@ -18,7 +18,9 @@ import com.petfoster.repository.PetRepository;
 import com.petfoster.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
-
+/**
+ * Service class for managing pets and their related operations.
+ */
 @Service
 public class PetService {
 
@@ -30,9 +32,11 @@ public class PetService {
 	
 	@Autowired
 	private UserRepository userRepository;
-	
-	
-
+	/**
+     * Retrieves a list of all pets.
+     * 
+     * @return a list of PetDTO objects representing all pets
+     */
 	@Cacheable("pets")
 	public List<PetDTO> getAllPets()
 	{
@@ -43,14 +47,27 @@ public class PetService {
 				.map(pet -> modelMapper.map(pet, PetDTO.class))
 				.collect(Collectors.toList());
 	}
-	
+	 /**
+     * Retrieves the details of a pet by its ID.
+     * 
+     * @param id the pet ID
+     * @return a PetDTO object representing the pet
+     */
 	@Cacheable("pet")
 	public PetDTO getPetById(Long id)
 	{
 		Pet pet = petRepository.findById(id).orElseThrow(()-> new RuntimeException("Pet not found"));
 		return modelMapper.map(pet, PetDTO.class);
 	}
-	
+	/**
+     * Adds a new pet with the specified details and image file.
+     * 
+     * @param userId the ID of the user adding the pet
+     * @param petDto the pet data transfer object containing pet details
+     * @param imageFile the image file of the pet
+     * @return a PetDTO object representing the added pet
+     * @throws IOException if an I/O error occurs while processing the image file
+     */
 	@Transactional
 	public PetDTO addNewPet(Long userId,PetDTO petDto, MultipartFile imageFile) throws IOException
 	{
@@ -65,7 +82,13 @@ public class PetService {
 		pet = petRepository.save(pet);
 		return modelMapper.map(pet, PetDTO.class);
 	}
-	
+	/**
+     * Updates the details of an existing pet.
+     * 
+     * @param id the pet ID
+     * @param petDTO the pet data transfer object containing updated pet details
+     * @return a PetDTO object representing the updated pet
+     */
 	@Transactional
 	public PetDTO updatePet(Long id, PetDTO petDTO)
 	{
@@ -78,7 +101,12 @@ public class PetService {
 		return modelMapper.map(pet, PetDTO.class);
 		
 	}
-	
+	 /**
+     * Changes the fostered status of a pet.
+     * 
+     * @param id the pet ID
+     * @param status the new fostered status
+     */
 	@Transactional
 	public void changeFosteredStatus(Long id, boolean status)
 	{
@@ -89,7 +117,11 @@ public class PetService {
 	
 	@Autowired
 	private FosterRequestService fosReqServ;
-	
+	/**
+     * Deletes a pet by its ID.
+     * 
+     * @param id the pet ID
+     */
 	@Transactional
 	public void deletePet(Long id)
 	{
@@ -100,28 +132,52 @@ public class PetService {
 		
 		petRepository.deleteById(id);
 	}
-	
-	
+	  /**
+     * Converts a Pet entity to a PetDTO.
+     * 
+     * @param pet the Pet entity
+     * @return the PetDTO object
+     */
 	public PetDTO convertToDTO(Pet pet) {
 		
 		return modelMapper.map(pet, PetDTO.class);
 	}
-	
+	  /**
+     * Retrieves a pet by its breed.
+     * 
+     * @param breed the pet breed
+     * @return a PetDTO object representing the pet
+     */
 	public PetDTO getPetByBreed(String breed)
 	{
 		return modelMapper.map(petRepository.findByBreed(breed), PetDTO.class);
 	}
-	
+	  /**
+     * Retrieves a pet by its age.
+     * 
+     * @param age the pet age
+     * @return a PetDTO object representing the pet
+     */
 	public PetDTO getPetByAge(Integer age)
 	{
 		return modelMapper.map(petRepository.findByAge(age), PetDTO.class);
 	}
-	
+	 /**
+     * Retrieves a pet by its location.
+     * 
+     * @param location the pet location
+     * @return a PetDTO object representing the pet
+     */
 	public PetDTO getPetLocation(String location)
 	{
 		return modelMapper.map(petRepository.findByLocation(location), PetDTO.class);
 	}
-	
+	 /**
+     * Retrieves a list of pets belonging to a user.
+     * 
+     * @param userId the user ID
+     * @return a list of PetDTO objects representing the user's pets
+     */
 	@Cacheable("users_pets")
 	public List<PetDTO> getPetByUserId(Long userId)
 	{
@@ -143,7 +199,12 @@ public class PetService {
 
 	*
 	 */
-
+	  /**
+     * Retrieves the image data of a pet by its ID.
+     * 
+     * @param petId the pet ID
+     * @return a byte array representing the pet's image data
+     */
 	public byte[] getPetImageById(Long petId) {
 		Pet pet = petRepository.findById(petId).orElseThrow();
 		return pet.getImageData();

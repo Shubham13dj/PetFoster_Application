@@ -73,19 +73,32 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.petfoster.utils.JWTUtils;
 import com.petfoster.utils.JwtAuthenticationFilter;
-
+/**
+ * Configuration class for Spring Security. This class configures the security
+ * settings, including authentication and authorization mechanisms.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
 	private JWTUtils jwtUtils;
-
+	/**
+     * Constructor to initialize JWTUtils.
+     * 
+     * @param jwtUtils the JWT utility class
+     */
 	public SecurityConfig(JWTUtils jwtUtils) {
 		this.jwtUtils = jwtUtils;
 	}
 
-	// Define SecurityFilterChain bean instead of extending
-	// WebSecurityConfigurerAdapter
+	 /**
+     * Creates a bean for SecurityFilterChain which configures HTTP security
+     * settings.
+     * 
+     * @param http the HttpSecurity object to configure
+     * @return a SecurityFilterChain instance
+     * @throws Exception if there is an error during configuration
+     */
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable())
@@ -95,17 +108,31 @@ public class SecurityConfig {
 
 		return http.build();
 	}
-
+	/**
+     * Creates a bean for PasswordEncoder to handle password encoding.
+     * 
+     * @return a BCryptPasswordEncoder instance
+     */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder(); // Password encoding bean
 	}
-
+	/**
+     * Creates a bean for AuthenticationManager to manage authentication.
+     * 
+     * @param http the HttpSecurity object to configure
+     * @return an AuthenticationManager instance
+     * @throws Exception if there is an error during configuration
+     */
 	@Bean
 	public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
 		return http.getSharedObject(AuthenticationManagerBuilder.class).build(); // Build authentication manager bean
 	}
-
+	/**
+     * Creates a bean for JwtAuthenticationFilter to handle JWT authentication.
+     * 
+     * @return a JwtAuthenticationFilter instance
+     */
 	@Bean
 	public JwtAuthenticationFilter jwtAuthenticationFilter() {
 		return new JwtAuthenticationFilter(jwtUtils); // Create JWT filter bean

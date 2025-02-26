@@ -1,3 +1,6 @@
+/**
+ * Provides the entity classes for the Pet Foster system.
+ */
 package com.petfoster.model;
 
 import java.util.Date;
@@ -24,9 +27,11 @@ import lombok.Setter;
 @Entity
 public class AdoptionRequest {
 
-	/*
-	 * adopt_request_id, user_id (adopter), pet_id, request_date, status (pending, approved, rejected)
-	 */
+	 /*
+     * Fields:
+     * adopt_request_id, user_id (adopter), pet_id, request_date, status 
+     * (pending, approved, rejected)
+     */
 	
 	
 	/*
@@ -35,8 +40,6 @@ public class AdoptionRequest {
 	Transfer ownership after adoption
 
 	 */
-	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -57,7 +60,15 @@ public class AdoptionRequest {
 	public AdoptionRequest() {
 		super();
 	}
-
+	/**
+     * Constructs a new AdoptionRequest with specified details.
+     * 
+     * @param id the adoption request ID
+     * @param adopter the user adopting the pet
+     * @param requestDate the date of the adoption request
+     * @param status the status of the adoption request
+     * @param pet the pet being adopted
+     */
 	public AdoptionRequest(Long id, User adopter, Date requestDate, RequestStatus status, Pet pet) {
 		super();
 		this.id = id;
@@ -83,7 +94,6 @@ public class AdoptionRequest {
 		this.status = status;
 	}
 
-
 	public User getAdopter() {
 		return adopter;
 	}
@@ -107,8 +117,4 @@ public class AdoptionRequest {
 	public void setStatus(String status) {
 		this.status = RequestStatus.valueOf(status);
 	}
-
-	
-	
-	
 }

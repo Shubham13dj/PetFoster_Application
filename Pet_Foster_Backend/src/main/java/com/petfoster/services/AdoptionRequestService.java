@@ -15,7 +15,9 @@ import com.petfoster.repository.PetRepository;
 import com.petfoster.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
-
+/**
+ * Service class to manage adoption requests.
+ */
 @Service
 public class AdoptionRequestService {
 
@@ -30,8 +32,13 @@ public class AdoptionRequestService {
 	
 	@Autowired 
 	private PetRepository petRepo;
-	
-	
+	/**
+     * Creates a new adoption request.
+     *
+     * @param adoptionRequestDTO The DTO containing adoption request details.
+     * @return The created AdoptionRequestDTO.
+     * @throws RuntimeException if the user or pet is not found.
+     */
 	@Transactional
 	public AdoptionRequestDTO createAdoptionRequest(AdoptionRequestDTO adoptionRequestDTO) {
 	    // Fetch the adopter by ID (use the ID provided in the DTO)
@@ -62,8 +69,14 @@ public class AdoptionRequestService {
 	    // Map the saved entity back to DTO and return it
 	    return adoptReq;
 	}
-
-	
+	/**
+     * Changes the status of an adoption request.
+     *
+     * @param id The ID of the adoption request.
+     * @param status The new status to be set.
+     * @return The updated AdoptionRequestDTO.
+     * @throws RuntimeException if the adoption request is not found.
+     */
 	@Transactional
 	public AdoptionRequestDTO changeAdoptionStatus(Long id, String status)
 	{
@@ -72,7 +85,11 @@ public class AdoptionRequestService {
 		adoptionRequestRepository.save(adoptionRequest);
 		return modelMapper.map(adoptionRequest, AdoptionRequestDTO.class);
 	}
-
+	 /**
+     * Deletes an adoption request by its ID.
+     *
+     * @param id The ID of the adoption request.
+     */
 	@Transactional
 	public void deleteAdoptionRequest(Long id)
 	{

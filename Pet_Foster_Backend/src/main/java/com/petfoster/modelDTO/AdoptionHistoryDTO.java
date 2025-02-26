@@ -1,3 +1,18 @@
+/**
+ * AdoptionHistoryDTO is a Data Transfer Object (DTO) representing the adoption 
+ * history of a pet. This class includes the pet, the adopter, and the adoption date.
+ * 
+ * <p>
+ *     View adoption history for pets
+ * </p>
+ * 
+ * @package com.petfoster.modelDTO
+ * 
+ * @version 1.0
+ * 
+ * @author cdac project
+ * 
+ */
 package com.petfoster.modelDTO;
 
 import java.util.Date;
@@ -18,17 +33,16 @@ import lombok.Setter;
 
 public class AdoptionHistoryDTO {
 
-	/*
-	 * pet_id, adopter_id, adopted_date
-	 */
-	
-	/*
-	 * 	View adoption history for pets
-	 */
-	
+	/**
+     * The Pet Data Transfer Object
+     */
 	private PetDTO pet;
-	
+	/**
+     * The User Data Transfer Object representing the adopter
+     */
 	private UserDTO adopter;
-	
+	/**
+     * The date the pet was adopted
+     */
 	private Date adopterDate;
 }

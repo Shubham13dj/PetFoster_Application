@@ -1,34 +1,32 @@
+/**
+ * Provides the entity classes for the Pet Foster system.
+ */
 package com.petfoster.model;
 
 import java.util.Date;
 
 import com.petfoster.enums.util.RequestStatus;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-
-
 
 /*
  * Handles requests for fostering pets.
  */
-@Data
-@AllArgsConstructor
+
 @Entity
 public class FosterRequest {
-
 	/*
-	 * request_id, user_id (foster parent), pet_id, request_date, status (pending, accepted, rejected), start_date, end_date, notes
-	 */
-	
+     * Fields:
+     * request_id, user_id (foster parent), pet_id, request_date, status 
+     * (pending, accepted, rejected), start_date, end_date, notes
+     */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long Id;
@@ -48,20 +46,24 @@ public class FosterRequest {
 	
 	private Date requestDate;
 	
+	@Enumerated(EnumType.STRING)
 	private RequestStatus status;
 	
 	private Date startDate;
 	
-	public User getFosterParent() {
-		return fosterParent;
-	}
-
-	public void setFosterParent(User fosterParent) {
-		this.fosterParent = fosterParent;
-	}
-
-	
-
+	/**
+     * Constructs a new FosterRequest with specified details.
+     * 
+     * @param id the request ID
+     * @param fosterParent the foster parent user
+     * @param parent the parent user
+     * @param pet the pet involved in the request
+     * @param requestDate the date of the request
+     * @param status the status of the request
+     * @param startDate the start date of the fostering period
+     * @param endDate the end date of the fostering period
+     * @param notes any additional notes
+     */
 	public FosterRequest(long id, User fosterParent, User parent, Pet pet, Date requestDate, RequestStatus status,
 			Date startDate, Date endDate, String notes) {
 		super();
@@ -76,6 +78,14 @@ public class FosterRequest {
 		this.notes = notes;
 	}
 
+	public User getFosterParent() {
+		return fosterParent;
+	}
+	
+	public void setFosterParent(User fosterParent) {
+		this.fosterParent = fosterParent;
+	}
+	
 	public User getParent() {
 		return parent;
 	}
@@ -147,9 +157,4 @@ public class FosterRequest {
 	public void setId(long id) {
 		Id = id;
 	}
-	
-	
-	
-	
-	
 }

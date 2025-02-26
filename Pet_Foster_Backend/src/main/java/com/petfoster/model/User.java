@@ -1,3 +1,6 @@
+/**
+ * Provides the entity classes for the Pet Foster system.
+ */
 package com.petfoster.model;
 
 import java.util.HashSet;
@@ -23,18 +26,19 @@ import jakarta.persistence.Version;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Represents a user in the Pet Foster system.
+ */
 @Entity
-
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "user")
-
 public class User {
+	
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String name;
-
 	private String gender;
 
 	@Column(name = "phone_no")
@@ -62,6 +66,21 @@ public class User {
 
 	@Version
 	private Long version;
+	/**
+     * Constructs a new User with specified details.
+     * 
+     * @param id the user ID
+     * @param name the name of the user
+     * @param gender the gender of the user
+     * @param phoneNumber the phone number of the user
+     * @param email the email of the user
+     * @param password the password of the user
+     * @param role the role of the user
+     * @param isEnabled the enabled status of the user
+     * @param petCount the number of pets the user has
+     * @param specialization the specialization of the user
+     * @param version the version of the entity
+     */
 	public User(long id, String name, String gender, String phoneNumber, String email, String password, UserRole role,
 	        boolean isEnabled, Integer petCount, String specialization, Long version) {
 	    super();

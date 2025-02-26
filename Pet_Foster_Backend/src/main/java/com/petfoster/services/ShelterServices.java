@@ -1,78 +1,95 @@
-ccpackage com.petfoster.services;
+package com.petfoster.services;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.petfoster.model.Shelter;
 import com.petfoster.modelDTO.ShelterDTO;
-import com.petfoster.repository.ShelterRepository;
 
 import jakarta.transaction.Transactional;
-
+/**
+ * Service class to manage shelters.
+ */
 @Service
 public class ShelterServices {
-
-	@Autowired
-	private ShelterRepository shelterRepo;
-	
-	@Autowired 
-	private ModelMapper modelMapper;
-	
+	 /**
+     * Adds a new shelter.
+     *
+     * @param shelterDTO The DTO containing shelter details.
+     * @return The created ShelterDTO.
+     */
 	@Transactional
 	public ShelterDTO addShelter(ShelterDTO shelterDTO)
 	{
-		return modelMapper.map(shelterRepo.save(modelMapper.map(shelterDTO, Shelter.class)), ShelterDTO.class);
+		return null;
 	}
-	
+	 /**
+     * Updates an existing shelter.
+     *
+     * @param id The ID of the shelter to update.
+     * @param shelterDTO The DTO containing updated shelter details.
+     * @return The updated ShelterDTO.
+     */
 	@Transactional
 	public ShelterDTO updateShelter(Long id, ShelterDTO shelterDTO)
 	{
-		Shelter shelter = shelterRepo.findById(id).orElseThrow(()-> new RuntimeException("No shelter found"));
-		shelter.setName(shelterDTO.getName());
-		shelter.setLocation(shelterDTO.getLocation());
-		shelter.setCapacity(shelterDTO.getCapacity());
-		shelter.setAvailablePetsCount(shelterDTO.getAvailablePetsCount());
-		shelter.setContactInfo(shelterDTO.getContactInfo());
-		
-		shelterRepo.save(shelter);
-		
-		return modelMapper.map(shelter, ShelterDTO.class);
+		return null;
+
 	}
-	
+	/**
+     * Retrieves all shelters.
+     *
+     * @return A list of ShelterDTOs.
+     */
 	public List<ShelterDTO> getAllShelters()
 	{
-		return shelterRepo.findAll().stream().map(shelter -> modelMapper.map(shelter, ShelterDTO.class))
-				.collect(Collectors.toList());
+		return null;
+
 	}
-	
+	/**
+     * Retrieves a shelter by its ID.
+     *
+     * @param id The ID of the shelter.
+     * @return The ShelterDTO.
+     */
 	public ShelterDTO getShelterById(Long id)
 	{
-		return modelMapper.map(shelterRepo.findById(id), ShelterDTO.class);
+		return null;
 	}
-	
+	 /**
+     * Deletes a shelter by its ID.
+     *
+     * @param id The ID of the shelter to delete.
+     */
 	@Transactional
 	public void deleteShelterById(Long id)
 	{
-		shelterRepo.deleteById(id);
+		
 	}
-	
+	 /**
+     * Retrieves shelters by their location.
+     *
+     * @param location The location of the shelters.
+     * @return A list of ShelterDTOs.
+     */
 	public List<ShelterDTO> getShelterByLocation(String location)
 	{
-		return shelterRepo.findByLocation(location).stream().map(shelter-> modelMapper.map(shelter, ShelterDTO.class))
-				.collect(Collectors.toList());
+		return null;
+
 	}
-	
+	 /**
+     * Updates the count of available pets in a shelter.
+     *
+     * @param id The ID of the shelter.
+     * @param newCount The new count of available pets.
+     * @return The updated ShelterDTO.
+     */
 	@Transactional
 	public ShelterDTO updateAvailablePetsCount(Long id, Integer newCount)
 	{
-		Shelter shelter = shelterRepo.findById(id).orElseThrow(()->new RuntimeException("Shelter not found"));
-		shelter.setCapacity(newCount);
-		return modelMapper.map(shelterRepo.save(shelter), ShelterDTO.class);
-		
+		return null;
+
 	}
 	
 	

@@ -1,0 +1,10 @@
+com.petfoster.config
+com.petfoster.controllers
+com.petfoster.enums.util
+com.petfoster.model
+com.petfoster.model.utility
+com.petfoster.modelDTO
+com.petfoster.repository
+com.petfoster.services
+com.petfoster.utils
+com.petfoster.WebApplication

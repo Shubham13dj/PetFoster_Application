@@ -1,3 +1,20 @@
+/**
+ * PetDTO is a Data Transfer Object (DTO) representing a pet. This class includes 
+ * information about the pet such as its ID, name, age, species, breed, health status,
+ * adoption status, fostering status, location, image details, description, user, and 
+ * availability for adoption and fostering.
+ * 
+ * <p>
+ *     Handles the representation of pets in the system.
+ * </p>
+ * 
+ * @package com.petfoster.modelDTO
+ * 
+ * @version 1.0
+ * 
+ * @author Team
+ * 
+ */
 package com.petfoster.modelDTO;
 
 import com.petfoster.model.User;
@@ -6,28 +23,85 @@ import jakarta.persistence.Lob;
 
 public class PetDTO {
 	
-	
-	private Long id;
-	private String name;
-	private Integer age;
-	private String species;
-	private String breed;
-	private String healthStatus;
-	private boolean adopted;
-	private boolean fostered;
-	private String location;
-	
-	private String imageName;
-	private String imageType;
-	
-	@Lob
-	private byte[] imageData;
-	
-	private String description;
+	/**
+     * The unique identifier for the pet
+     */
+    private Long id;
     
-	private User user;
-	
-	private boolean availableToAdopt;
+    /**
+     * The name of the pet
+     */
+    private String name;
+    
+    /**
+     * The age of the pet
+     */
+    private Integer age;
+    
+    /**
+     * The species of the pet
+     */
+    private String species;
+    
+    /**
+     * The breed of the pet
+     */
+    private String breed;
+    
+    /**
+     * The health status of the pet
+     */
+    private String healthStatus;
+    
+    /**
+     * Indicates whether the pet is adopted
+     */
+    private boolean adopted;
+    
+    /**
+     * Indicates whether the pet is fostered
+     */
+    private boolean fostered;
+    
+    /**
+     * The location of the pet
+     */
+    private String location;
+    
+    /**
+     * The name of the pet's image file
+     */
+    private String imageName;
+    
+    /**
+     * The type of the pet's image file
+     */
+    private String imageType;
+    
+    /**
+     * The byte array representing the pet's image data
+     */
+    @Lob
+    private byte[] imageData;
+    
+    /**
+     * The description of the pet
+     */
+    private String description;
+    
+    /**
+     * The user associated with the pet
+     */
+    private User user;
+    
+    /**
+     * Indicates whether the pet is available for adoption
+     */
+    private boolean availableToAdopt;
+    
+    /**
+     * Indicates whether the pet is available for fostering
+     */
 	private boolean availableToFoster;
 	
 	public boolean isAvailableToAdopt() {

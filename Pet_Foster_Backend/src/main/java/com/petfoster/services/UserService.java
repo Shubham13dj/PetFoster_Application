@@ -12,7 +12,9 @@ import com.petfoster.utils.JWTUtils;
 import com.petfoster.utils.PasswordUtils;
 
 import jakarta.transaction.Transactional;
-
+/**
+ * Service class for managing users and their authentication.
+ */
 @Service
 public class UserService {
 	
@@ -24,19 +26,27 @@ public class UserService {
 
 	 */
 
+	 /**
+     * Repository for accessing user data.
+     */
 	@Autowired
 	private UserRepository userRepository;
-	
+	 /**
+     * Model mapper for mapping DTOs to entities and vice versa.
+     */
 	@Autowired
 	private ModelMapper modelMapper;
-	
+	 /**
+     * Utility for handling JWT token generation and validation.
+     */
 	@Autowired
 	private JWTUtils jwtUtils;
-	
-	
-	
-	
-
+	/**
+     * Registers a new user.
+     * 
+     * @param userDTO the user data transfer object containing user details
+     * @return the registered user's data transfer object
+     */
 	@Transactional
 	public UserDTO signup(UserDTO userDTO)
 	{
@@ -47,7 +57,13 @@ public class UserService {
 		user.setPassword(PasswordUtils.hashPassword(user.getPassword()));
 		return modelMapper.map(userRepository.save(user), UserDTO.class);
 	}
-	
+	/**
+     * Updates the profile of an existing user.
+     * 
+     * @param id the user ID
+     * @param userDTO the user data transfer object containing updated user details
+     * @return the updated user's data transfer object
+     */
 	@Transactional
 	public UserDTO updateUserProfile( Long id,UserDTO userDTO)
 	{
@@ -62,7 +78,12 @@ public class UserService {
 		return modelMapper.map(userRepository.save(user), UserDTO.class);
 	}
 	
-	
+	/**
+     * Authenticates a user and generates a JWT token.
+     * 
+     * @param userDTO the user data transfer object containing login credentials
+     * @return the authenticated user's data transfer object with a JWT token
+     */
 	public UserDTO login( UserDTO userDTO)
 	{
 		
@@ -78,7 +99,12 @@ public class UserService {
 		}
 	
 	}
-	
+	/**
+     * Retrieves the details of a user by their ID.
+     * 
+     * @param userId the user ID
+     * @return the user's data transfer object
+     */
 	@Cacheable("user")
 	public UserDTO getUserDetails(Long userId)
 	{

@@ -7,19 +7,27 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-
+/**
+ * Aspect for performance monitoring and logging execution time of methods.
+ */
 @Aspect
 @Component
 public class PerformanceMonitoringAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(PerformanceMonitoringAspect.class);
-
-    // Define the pointcut to target all methods in the services package
+    /**
+     * Pointcut to target all methods in the services package.
+     */
     @Pointcut("execution(* com.petfoster.services..*(..))")
     public void monitor() {
     }
-
-    // Around advice to log execution time and log method details
+    /**
+     * Around advice to log execution time and method details.
+     * 
+     * @param joinPoint the proceeding join point
+     * @return the result of method execution
+     * @throws Throwable if any error occurs during method execution
+     */
     @Around("monitor()")
     public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         // Log method entry

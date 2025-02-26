@@ -3,21 +3,10 @@ package com.petfoster.modelDTO;
 import java.util.Date;
 
 import com.petfoster.enums.util.RequestStatus;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-/*
- * Manages requests for adopting pets.
+/**
+ * Data Transfer Object (DTO) for managing adoption requests for pets.
+ * This class encapsulates the necessary information for an adoption request.
  */
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-
 public class AdoptionRequestDTO {
 
 	/*
@@ -32,24 +21,41 @@ public class AdoptionRequestDTO {
 
 	 */
 	
-	
+	 /**
+     * The unique identifier of the adoption request.
+     */
 	private Long id;
-	
+	 /**
+     * The unique identifier of the adopter.
+     */
 	private Long adopter;
-	
+	/**
+     * The date the adoption request was submitted.
+     */
 	private Date requestDate;
-	
+	/**
+     * The status of the adoption request (pending, approved, rejected).
+     */
 	private RequestStatus status;
-	
+	/**
+     * The unique identifier of the pet to be adopted.
+     */
 	private Long pet;
-	
-	
-
+	/**
+     * Default constructor.
+     */
 	public AdoptionRequestDTO() {
 		super();
 	}
-
-
+	 /**
+     * Parameterized constructor to initialize all fields.
+     * 
+     * @param id the unique identifier of the adoption request
+     * @param adopter the unique identifier of the adopter
+     * @param requestDate the date the adoption request was submitted
+     * @param status the status of the adoption request (pending, approved, rejected)
+     * @param pet the unique identifier of the pet to be adopted
+     */
 	public AdoptionRequestDTO(Long id, Long adopter, Date requestDate, RequestStatus status, Long pet) {
 		super();
 		this.id = id;
@@ -67,8 +73,6 @@ public class AdoptionRequestDTO {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	
 
 	public Date getRequestDate() {
 		return requestDate;
@@ -106,8 +110,4 @@ public class AdoptionRequestDTO {
 		this.pet = pet;
 	}
 
-	
-	
-	
-	
 }
